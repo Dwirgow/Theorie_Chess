@@ -1,6 +1,6 @@
 {
-  "name": "ChessTheory 1800+",
-  "short_name": "ChessTheory",
+  "name": "Theory Chess",
+  "short_name": "Theory Chess",
   "description": "Répertoire interactif et stratégique d'ouvertures d'échecs",
   "start_url": "./",
   "display": "standalone",
