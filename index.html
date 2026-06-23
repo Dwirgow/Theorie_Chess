@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessTheory 1800+ | Répertoire Interactif Stratégique</title>
+
+   <script src="Ouvertures.js"></script> 
+   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.21.4/babel.min.js"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .chess-piece { filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4)); }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react">
+        /** @jsx React.createElement */
+        /** @jsxFrag React.Fragment */
+
+        const { useState, useEffect, useMemo, useRef, Fragment } = React;
+
+        const PIECES = {
+          'P': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png',
+          'N': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png',
+          'B': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wb.png',
+          'R': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wr.png',
+          'Q': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wq.png',
+          'K': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wk.png',
+          'p': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png',
+          'n': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bn.png',
+          'b': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bb.png',
+          'r': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png',
+          'q': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bq.png',
+          'k': 'https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bk.png',
+        };
+
+        const translateSanToFr = (san) => {
+            const map = {'N':'C', 'B':'F', 'R':'T', 'Q':'D', 'K':'R'};
+            return san.replace(/[NBRQK]/g, match => map[match]);
+        };
+
+        const Chessboard = ({ fen, side }) => {
+          const board = useMemo(() => {
+            const rows = fen.split(' ')[0].split('/');
+            let b = [];
+            for (let row of rows) {
+              let boardRow = [];
+              for (let char of row) {
+                if (isNaN(char)) boardRow.push(char);
+                else for (let i = 0; i < parseInt(char); i++) boardRow.push('');
+              }
+              b.push(boardRow);
+            }
+            if (side === 'black') {
+              b = b.reverse().map(row => row.reverse());
+            }
+            return b;
+          }, [fen, side]);
+
+          const ranks = side === 'white' ? [8, 7, 6, 5, 4, 3, 2, 1] : [1, 2, 3, 4, 5, 6, 7, 8];
+          const files = side === 'white' ? ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] : ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+
+          return (
+            <div className="flex flex-col shrink-0">
+              <div className="flex">
+                <div className="flex flex-col justify-around text-[10px] sm:text-xs font-bold text-neutral-500 pr-1.5 pb-0.5">
+                    {ranks.map(r => (
+                        <div key={`rank-${r}`} className="h-8 sm:h-10 flex items-center justify-center">{r}</div>
+                    ))}
+                </div>
+                <div className="w-64 h-64 sm:w-80 sm:h-80 border-4 border-neutral-800 shadow-2xl grid grid-cols-8 grid-rows-8 bg-neutral-800 rounded overflow-hidden shrink-0">
+                  {board.map((row, i) =>
+                    row.map((piece, j) => {
+                      const isLight = (i + j) % 2 === 0;
+                      return (
+                        <div key={`cell-${i}-${j}`} className={`w-full h-full flex items-center justify-center ${isLight ? 'bg-[#ebecd0]' : 'bg-[#739552]'}`}>
+                          {piece && <img src={PIECES[piece]} className="w-[85%] h-[85%] chess-piece select-none pointer-events-none" draggable="false" />}
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+              <div className="flex">
+                  <div className="pr-1.5 invisible text-[10px] sm:text-xs font-bold">8</div>
+                  <div className="flex w-64 h-4 sm:w-80 pt-1 text-[10px] sm:text-xs font-bold text-neutral-500">
+                      {files.map(f => (
+                          <div key={`file-${f}`} className="flex-1 text-center">{f}</div>
+                      ))}
+                  </div>
+              </div>
+            </div>
+          );
+        };
+
+        const Icon = ({ name, size = 24, className = "" }) => {
+            const iconRef = useRef(null);
+            
+            useEffect(() => {
+                if (iconRef.current) {
+                    iconRef.current.innerHTML = `<i data-lucide="${name}" class="${className}" style="width: ${size}px; height: ${size}px;"></i>`;
+                    lucide.createIcons({ root: iconRef.current });
+                }
+            }, [name, size, className]);
+
+            return <span ref={iconRef} style={{ display: 'contents' }}></span>;
+        };
+
+        const VariationAnalysis = ({ variant, side, index }) => {
+            const [activeLine, setActiveLine] = useState('main'); 
+            const [currentIndex, setCurrentIndex] = useState(0);
+
+            const mainSteps = useMemo(() => {
+                if (typeof Chess === 'undefined') return [];
+                const ch = new Chess();
+                ch.load_pgn(variant.pgnEn);
+                const moves = ch.history();
+                const ch2 = new Chess();
+                const steps = [{ fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', sanFr: 'Début', sanEn: 'Start', isWhiteMove: false, moveNum: 0, index: 0 }];
+                moves.forEach((move, i) => {
+                    ch2.move(move);
+                    steps.push({
+                        fen: ch2.fen(),
+                        sanFr: translateSanToFr(move),
+                        sanEn: move,
+                        moveNum: Math.floor(i / 2) + 1,
+                        isWhiteMove: i % 2 === 0,
+                        index: i + 1
+                    });
+                });
+                return steps;
+            }, [variant.pgnEn]);
+
+            const subVariationsData = useMemo(() => {
+                if (!variant.subVariations) return [];
+                return variant.subVariations.map((sub, idx) => {
+                    const ch = new Chess();
+                    ch.load_pgn(sub.pgnEn);
+                    const moves = ch.history();
+                    const ch2 = new Chess();
+                    const steps = [{ fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', sanFr: 'Début', sanEn: 'Start', isWhiteMove: false, moveNum: 0, index: 0 }];
+                    moves.forEach((move, i) => {
+                        ch2.move(move);
+                        steps.push({
+                            fen: ch2.fen(),
+                            sanFr: translateSanToFr(move),
+                            sanEn: move,
+                            moveNum: Math.floor(i / 2) + 1,
+                            isWhiteMove: i % 2 === 0,
+                            index: i + 1
+                        });
+                    });
+                    
+                    let devIndex = 1;
+                    while (devIndex < steps.length && devIndex < mainSteps.length && steps[devIndex].sanEn === mainSteps[devIndex].sanEn) {
+                        devIndex++;
+                    }
+                    return { ...sub, steps, devIndex, origIdx: idx };
+                });
+            }, [variant.subVariations, mainSteps]);
+
+            useEffect(() => {
+                setActiveLine('main');
+                setCurrentIndex(mainSteps.length - 1);
+            }, [mainSteps]);
+
+            const currentSteps = activeLine === 'main' ? mainSteps : subVariationsData[activeLine].steps;
+            const currentStep = currentSteps[currentIndex] || currentSteps[currentSteps.length - 1];
+
+            const handleMoveClick = (line, idx) => {
+                setActiveLine(line);
+                setCurrentIndex(idx);
+            };
+
+            const goPrev = () => setCurrentIndex(i => Math.max(0, i - 1));
+            const goNext = () => setCurrentIndex(i => Math.min(currentSteps.length - 1, i + 1));
+
+            const renderInlinePgn = () => {
+                const elements = [];
+                for (let i = 1; i < mainSteps.length; i++) {
+                    const step = mainSteps[i];
+                    
+                    if (step.isWhiteMove) {
+                        elements.push(<span key={`m-num-${i}`} className="text-neutral-500 font-bold ml-1 mr-1 select-none">{step.moveNum}.</span>);
+                    } else if (i > 1 && mainSteps[i-1].isWhiteMove === false) {
+                         elements.push(<span key={`m-num-b-${i}`} className="text-neutral-500 font-bold ml-1 mr-1 select-none">{step.moveNum}...</span>);
+                    }
+
+                    const isMainActive = activeLine === 'main' && currentIndex === i;
+                    elements.push(
+                        <button 
+                            key={`m-btn-${i}`} 
+                            onClick={() => handleMoveClick('main', i)}
+                            className={`px-1 py-0.5 rounded transition-all font-semibold ${isMainActive ? 'bg-amber-600 text-white shadow' : 'text-blue-400 hover:bg-neutral-800'}`}
+                        >
+                            {step.sanFr}
+                        </button>
+                    );
+
+                    const branchingSubs = subVariationsData.filter(s => s.devIndex === i + 1);
+                    
+                    branchingSubs.forEach(sub => {
+                        elements.push(<span key={`sub-open-${i}-${sub.origIdx}`} className="text-neutral-600 ml-1 mr-1 font-bold">(</span>);
+                        for (let j = sub.devIndex; j < sub.steps.length; j++) {
+                            const subStep = sub.steps[j];
+                            if (subStep.isWhiteMove || j === sub.devIndex) {
+                                elements.push(<span key={`s-num-${sub.origIdx}-${j}`} className="text-neutral-500 text-sm ml-1 mr-1 select-none">{subStep.moveNum}{subStep.isWhiteMove ? '.' : '...'}</span>);
+                            }
+                            
+                            const isSubActive = activeLine === sub.origIdx && currentIndex === j;
+                            elements.push(
+                                <button 
+                                    key={`s-btn-${sub.origIdx}-${j}`} 
+                                    onClick={() => handleMoveClick(sub.origIdx, j)}
+                                    className={`px-1 py-0.5 rounded transition-all text-sm italic ${isSubActive ? 'bg-red-600 text-white shadow not-italic font-bold' : 'text-neutral-400 hover:bg-neutral-800 hover:text-red-400'}`}
+                                >
+                                    {subStep.sanFr}
+                                </button>
+                            );
+                        }
+                        elements.push(<span key={`sub-close-${i}-${sub.origIdx}`} className="text-neutral-600 ml-1 mr-1 font-bold">)</span>);
+                    });
+                }
+                return elements;
+            };
+
+            const activeSubData = activeLine !== 'main' ? subVariationsData[activeLine] : null;
+
+            return (
+                <div className="bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden shadow-xl mb-12">
+                    <div className="p-6 lg:p-8">
+                        <h4 className="text-lg md:text-xl font-bold text-white mb-4 flex items-center gap-2 border-b border-neutral-700/50 pb-2">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-xs shrink-0">
+                                {index + 1}
+                            </span>
+                            {variant.name}
+                        </h4>
+                        
+                        <div className="flex flex-col xl:flex-row gap-8 items-start">
+                            <div className="flex-1 w-full flex flex-col gap-6">
+                                
+                                <p className="text-neutral-300 text-lg leading-relaxed bg-neutral-800/30 p-5 rounded-xl border-l-2 border-amber-500/50">
+                                    {variant.theory}
+                                </p>
+
+                                {!activeSubData && variant.pros && variant.cons && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                        <div className="bg-emerald-950/20 border border-emerald-900/30 rounded-xl p-4">
+                                            <h5 className="text-sm font-bold text-emerald-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                                <Icon name="check-circle-2" size={16} /> Avantages
+                                            </h5>
+                                            <ul className="space-y-2 text-sm text-neutral-300">
+                                                {variant.pros.map((pro, i) => (
+                                                    <li key={`pro-${i}`} className="flex gap-2"><span className="text-emerald-500 mt-0.5">•</span> {pro}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <div className="bg-red-950/20 border border-red-900/30 rounded-xl p-4">
+                                            <h5 className="text-sm font-bold text-red-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                                <Icon name="x-circle" size={16} /> Inconvénients
+                                            </h5>
+                                            <ul className="space-y-2 text-sm text-neutral-300">
+                                                {variant.cons.map((con, i) => (
+                                                    <li key={`con-${i}`} className="flex gap-2"><span className="text-red-500 mt-0.5">•</span> {con}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeSubData && (
+                                    <div className="bg-red-950/20 border-l-4 border-red-600 p-6 rounded-xl animate-fade-in shadow-inner">
+                                        <h5 className="text-red-400 font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                                            <Icon name="alert-triangle" size={18} /> {activeSubData.name} : Pourquoi c'est mauvais ?
+                                        </h5>
+                                        <p className="text-neutral-200 text-lg leading-relaxed">
+                                            {activeSubData.explanation}
+                                        </p>
+                                    </div>
+                                )}
+
+                                <div className={`p-5 rounded-xl border transition-colors ${activeSubData ? 'bg-red-950/10 border-red-900/30' : 'bg-black/50 border-neutral-800/50'}`}>
+                                    <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
+                                        <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest flex items-center gap-2">
+                                            <Icon name="mouse-pointer-click" size={14} /> 
+                                            Cliquez sur un coup (les parenthèses sont les erreurs)
+                                        </span>
+                                    </div>
+                                    
+                                    <div className="flex flex-wrap items-center leading-loose text-base sm:text-lg">
+                                        {renderInlinePgn()}
+                                    </div>
+                                </div>
+
+                                {!activeSubData && variant.strategy && (
+                                    <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-5 mt-2 animate-fade-in">
+                                        <h5 className="text-sm font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                            <Icon name="compass" size={16} /> Plan de Jeu & Idées
+                                        </h5>
+                                        <p className="text-sm text-neutral-300 leading-relaxed mb-4">
+                                            {variant.strategy}
+                                        </p>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-xs text-neutral-500 uppercase font-bold tracking-wider">Coups Clés :</span>
+                                            <div className="flex flex-wrap gap-2">
+                                                {variant.keyMoves.map((km, i) => (
+                                                    <span key={`km-${i}`} className="bg-neutral-800 text-neutral-300 px-2 py-1 rounded text-xs font-mono border border-neutral-700">
+                                                        {km}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            
+                            <div className="flex flex-col items-center shrink-0 w-full xl:w-auto mt-2 xl:mt-0 sticky top-24">
+                                <div className="flex items-center justify-between w-full mb-3 px-1">
+                                    <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+                                        Coup <span className={activeSubData ? 'text-red-500 font-extrabold' : 'text-amber-500 font-bold'}>{currentIndex}</span> / {currentSteps.length - 1}
+                                    </span>
+                                </div>
+                                
+                                {currentStep && <Chessboard fen={currentStep.fen} side={side} />}
+                                
+                                <div className="flex gap-2 mt-4 w-full justify-center">
+                                    <button onClick={() => setCurrentIndex(0)} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1">
+                                        <Icon name="chevrons-left" size={20} />
+                                    </button>
+                                    <button onClick={goPrev} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1">
+                                        <Icon name="chevron-left" size={20} />
+                                    </button>
+                                    <button onClick={goNext} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1">
+                                        <Icon name="chevron-right" size={20} />
+                                    </button>
+                                    <button onClick={() => setCurrentIndex(currentSteps.length - 1)} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1">
+                                        <Icon name="chevrons-right" size={20} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+const App = () => {
+    // On utilise directement window.OPENINGS_DATA
+    const [side, setSide] = useState('white');
+    const [selectedOpening, setSelectedOpening] = useState(window.OPENINGS_DATA.white[0]);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    useEffect(() => {
+        setSelectedOpening(window.OPENINGS_DATA[side][0]);
+    }, [side]);
+
+    return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-amber-500/30 pb-20">
+        {/* Le Header */}
+        <header className="border-b border-neutral-800 bg-neutral-900/80 backdrop-blur-md sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+            <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-2 hover:bg-neutral-800 rounded-lg">
+                <Icon name="menu" />
+            </button>
+            <div className="bg-amber-600 p-2 rounded-lg">
+                <Icon name="book-open" className="text-white" />
+            </div>
+            <h1 className="text-xl font-bold hidden sm:block bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
+                ChessTheory <span className="text-amber-500">1800+</span>
+            </h1>
+            </div>
+            
+            <div className="flex bg-neutral-800 p-1 rounded-full border border-neutral-700">
+            <button onClick={() => setSide('white')} className={`px-4 sm:px-6 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'white' ? 'bg-white text-black' : 'text-neutral-400'}`}>Blancs</button>
+            <button onClick={() => setSide('black')} className={`px-4 sm:px-6 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'black' ? 'bg-neutral-700 text-white' : 'text-neutral-400'}`}>Noirs</button>
+            </div>
+        </div>
+        </header>
+
+        {/* Le corps de l'application */}
+        <div className="max-w-7xl mx-auto flex">
+        <aside className={`fixed inset-y-0 left-0 z-50 w-72 bg-neutral-900 border-r border-neutral-800 transform transition-transform duration-300 lg:relative lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div className="p-4 flex flex-col h-full">
+            <div className="flex justify-between mb-6 lg:hidden">
+                <span className="font-bold">Menu</span>
+                <button onClick={() => setSidebarOpen(false)}><Icon name="x" size={20}/></button>
+            </div>
+            <div className="space-y-1 overflow-y-auto">
+                {window.OPENINGS_DATA[side].map((opening) => {
+                return (
+                    <div key={`nav-${opening.id}`} className="mb-1">
+                    <button 
+                        onClick={() => {
+                            setSelectedOpening(opening);
+                            if(window.innerWidth < 1024) setSidebarOpen(false);
+                        }} 
+                        className={`w-full text-left px-4 py-3 rounded-xl transition-all flex justify-between items-center group ${selectedOpening.id === opening.id ? 'bg-amber-600/10 border border-amber-600/30 text-amber-500' : 'hover:bg-neutral-800 text-neutral-400 border border-transparent'}`}
+                    >
+                        <span className="font-medium">{opening.name}</span>
+                    </button>
+                    </div>
+                );
+                })}
+            </div>
+            </div>
+        </aside>
+
+        <main className="flex-1 p-4 lg:p-8 min-w-0">
+            <div className="max-w-6xl mx-auto">
+            
+            <section className="mb-12">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                <div>
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                    <div className="flex items-center gap-2 text-amber-500">
+                        <Icon name={side === 'white' ? 'sword' : 'shield'} size={20} />
+                        <span className="text-sm font-semibold uppercase tracking-widest">{side === 'white' ? 'Répertoire Blanc' : 'Répertoire Noir'}</span>
+                    </div>
+                    <span className="px-3 py-1 bg-indigo-900/40 text-indigo-400 border border-indigo-700/50 rounded-full text-xs font-bold tracking-wide">
+                        {selectedOpening.type}
+                    </span>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-white">{selectedOpening.name}</h2>
+                </div>
+                <div className="bg-neutral-800 px-5 py-3 rounded-xl border border-neutral-700 font-mono text-base text-amber-400 shadow-lg">
+                    {selectedOpening.moves}
+                </div>
+                </div>
+                
+                <p className="text-xl text-neutral-300 border-l-4 border-amber-600 pl-6 py-2 mb-8 font-medium">
+                    {selectedOpening.description}
+                </p>
+            </section>
+
+            <div className="grid gap-4 animate-fade-in">
+                {selectedOpening.variations.map((variant, idx) => (
+                <VariationAnalysis 
+                    key={`var-${selectedOpening.id}-${idx}`} 
+                    variant={variant} 
+                    side={side} 
+                    index={idx} 
+                />
+                ))}
+            </div>
+
+            </div>
+        </main>
+        </div>
+    </div>
+    );
+};        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
