@@ -1723,6 +1723,7 @@ window.REPERTOIRE_BUILDER = {
   ],
   
   profiles: {
+    // --- LES 4 PROFILS PURS ---
     pure_agressif: {
       name: "Le Berserker (Agressif Classique)",
       description: "Tactique frontale ! Vous occupez le centre et lancez vos pièces à l'assaut du Roi ennemi. Les sacrifices ne vous font pas peur.",
@@ -1730,15 +1731,6 @@ window.REPERTOIRE_BUILDER = {
         "Ouverture avec les Blancs conseillée : Gambit Roi", 
         "Défense contre e4 conseillée : Sicilienne Dragon", 
         "Défense contre d4 conseillée : Défense Grünfeld"
-      ]
-    },
-    agressif_hypermoderne: {
-      name: "Le Sniper (Contre-Attaque)",
-      description: "Vous aimez laisser l'adversaire prendre le centre pour mieux le faire exploser ensuite. Vous cherchez le KO technique grâce au dynamisme de vos pièces.",
-      suggestions: [
-        "Ouverture avec les Blancs conseillée : Attaque Grand Prix", 
-        "Défense contre e4 conseillée : Défense Alekhine", 
-        "Défense contre d4 conseillée : Défense Est-Indienne"
       ]
     },
     pure_positionnel: {
@@ -1750,15 +1742,6 @@ window.REPERTOIRE_BUILDER = {
         "Défense contre d4 conseillée : Gambit Dame Refusé (Orthodoxe)"
       ]
     },
-    positionnel_hypermoderne: {
-      name: "L'Architecte (Contrôle à distance)",
-      description: "Vous jouez sur les couleurs ! Vous contrôlez le centre à distance avec vos Fous et vos pions de flanc, créant des pressions invisibles mais mortelles.",
-      suggestions: [
-        "Ouverture avec les Blancs conseillée : Partie Catalane", 
-        "Défense contre e4 conseillée : Défense Caro-Kann", 
-        "Défense contre d4 conseillée : Défense Nimzo-Indienne"
-      ]
-    },
     pure_systeme: {
       name: "La Muraille (Pragmatique)",
       description: "Vous détestez la théorie. Vous voulez déployer vos pièces exactement de la même manière à chaque partie derrière une structure de pions incassable.",
@@ -1766,6 +1749,35 @@ window.REPERTOIRE_BUILDER = {
         "Ouverture avec les Blancs conseillée : Système de Londres", 
         "Défense contre e4 conseillée : Défense Caro-Kann", 
         "Défense contre d4 conseillée : Défense Slave"
+      ]
+    },
+    pure_hypermoderne: { // <-- NOUVEAU PROFIL MANQUANT AJOUTÉ
+      name: "L'Illusionniste (Hypermoderne Pur)",
+      description: "Vous refusez l'occupation classique ! Vous laissez volontairement le centre à votre adversaire pour mieux le détruire ensuite depuis les flancs (fianchettos).",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Début Réti", 
+        "Défense contre e4 conseillée : Défense Alekhine", 
+        "Défense contre d4 conseillée : Défense Est-Indienne"
+      ]
+    },
+
+    // --- LES 6 PROFILS HYBRIDES (Triés par ordre alphabétique pour le code) ---
+    agressif_hypermoderne: {
+      name: "Le Sniper (Contre-Attaque)",
+      description: "Vous aimez laisser l'adversaire prendre le centre pour mieux le faire exploser ensuite. Vous cherchez le KO technique grâce au dynamisme de vos pièces.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Attaque Grand Prix", 
+        "Défense contre e4 conseillée : Défense Alekhine", 
+        "Défense contre d4 conseillée : Défense Est-Indienne"
+      ]
+    },
+    agressif_positionnel: {
+      name: "L'Attaquant Calculateur (Universel)",
+      description: "Vous cherchez l'initiative et l'attaque, mais en vous basant sur des principes classiques et sains. Vous ne sacrifiez pas sans garantie structurelle.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Partie Italienne", 
+        "Défense contre e4 conseillée : Sicilienne Najdorf", 
+        "Défense contre d4 conseillée : Défense Semi-Slave"
       ]
     },
     agressif_systeme: {
@@ -1777,7 +1789,16 @@ window.REPERTOIRE_BUILDER = {
         "Défense contre d4 conseillée : Défense Tchigorine"
       ]
     },
-    systeme_hypermoderne: {
+    hypermoderne_positionnel: { // <-- RENOMMÉ (était positionnel_hypermoderne)
+      name: "L'Architecte (Contrôle à distance)",
+      description: "Vous jouez sur les couleurs ! Vous contrôlez le centre à distance avec vos Fous et vos pions de flanc, créant des pressions invisibles mais mortelles.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Partie Catalane", 
+        "Défense contre e4 conseillée : Défense Caro-Kann", 
+        "Défense contre d4 conseillée : Défense Nimzo-Indienne"
+      ]
+    },
+    hypermoderne_systeme: { // <-- RENOMMÉ (était systeme_hypermoderne)
       name: "Le Caméléon (Système Flexible)",
       description: "Vous utilisez des structures hypermodernes mais de manière très systématique. Vous laissez le centre pour construire une attaque sur le flanc, peu importe la réponse adverse.",
       suggestions: [
@@ -1786,57 +1807,14 @@ window.REPERTOIRE_BUILDER = {
         "Défense contre d4 conseillée : Défense Hollandaise"
       ]
     },
-    agressif_positionnel: {
-      name: "L'Attaquant Calculateur (Universel)",
-      description: "Vous cherchez l'initiative et l'attaque, mais en vous basant sur des principes classiques et sains. Vous ne sacrifiez pas sans garantie structurelle.",
+    positionnel_systeme: { // <-- NOUVEAU PROFIL MANQUANT AJOUTÉ
+      name: "Le Roc (Système Positionnel)",
+      description: "La solidité absolue. Vous jouez des systèmes d'ouverture sans risque, conçus pour annuler toute dynamique adverse et gagner de longues batailles stratégiques.",
       suggestions: [
-        "Ouverture avec les Blancs conseillée : Partie Italienne", 
-        "Défense contre e4 conseillée : Sicilienne Najdorf", 
-        "Défense contre d4 conseillée : Défense Semi-Slave"
+        "Ouverture avec les Blancs conseillée : Ouverture Anglaise (Structure Botvinnik)", 
+        "Défense contre e4 conseillée : Défense Française (Variante d'Échange)", 
+        "Défense contre d4 conseillée : Défense Orthodoxe"
       ]
     }
-  },
-  
-  whiteOpenings: [
-    { name: "Gambit Roi", moves: "1. e4 e5 2. f4", style: "Agressif", difficulty: "Élevée", desc: "Le roi des gambits romantiques. Attaque foudroyante sur f7." },
-    { name: "Partie Écossaise", moves: "1. e4 e5 2. Cf3 Cc6 3. d4", style: "Agressif", difficulty: "Moyenne", desc: "Ouvre le centre immédiatement pour un combat tactique." },
-    { name: "Gambit Danois", moves: "1. e4 e5 2. d4 exd4 3. c3", style: "Agressif", difficulty: "Moyenne", desc: "Sacrifie deux pions pour une paire de fous terrifiante." },
-    { name: "Attaque Grand Prix", moves: "1. e4 c5 2. Cc3 (puis f4)", style: "Agressif/Système", difficulty: "Faible", desc: "L'arme anti-Sicilienne la plus brutale pour mater." },
-    { name: "Viennoise", moves: "1. e4 e5 2. Cc3", style: "Agressif/Positionnel", difficulty: "Moyenne", desc: "Développement sain avec de violentes idées d'attaque (f4)." },
-    { name: "Partie Espagnole", moves: "1. e4 e5 2. Cf3 Cc6 3. Fb5", style: "Positionnel", difficulty: "Très Élevée", desc: "Luttes stratégiques complexes et durables." },
-    { name: "Gambit Dame", moves: "1. d4 d5 2. c4", style: "Positionnel", difficulty: "Élevée", desc: "Pression constante sur le centre, jeu extrêmement sain." },
-    { name: "Partie Italienne", moves: "1. e4 e5 2. Cf3 Cc6 3. Fc4", style: "Universel", difficulty: "Moyenne", desc: "Permet un jeu lent (d3) ou des attaques violentes." },
-    { name: "Ouverture Anglaise", moves: "1. c4", style: "Hypermoderne", difficulty: "Élevée", desc: "Contrôle central par les flancs. Extrêmement flexible." },
-    { name: "Ouverture Réti", moves: "1. Cf3", style: "Hypermoderne", difficulty: "Élevée", desc: "Attaque le centre adverse avec des pièces depuis les coulisses." },
-    { name: "Partie Catalane", moves: "1. d4 Cf6 2. c4 e6 3. g3", style: "Hypermoderne", difficulty: "Très Élevée", desc: "Solidité de d4 mixée à la pression du fou g2." },
-    { name: "Système de Londres", moves: "1. d4 2. Ff4", style: "Système", difficulty: "Faible", desc: "Une pyramide indestructible. Jouable contre presque tout." },
-    { name: "Système Colle", moves: "1. d4 2. Cf3 3. e3", style: "Système", difficulty: "Faible", desc: "Ferme le centre pour préparer une attaque avec le fou d3." },
-    { name: "Attaque Est-Indienne", moves: "1. Cf3 2. g3 3. Fg2", style: "Système/Hypermoderne", difficulty: "Moyenne", desc: "Redoutable attaque à l'aile roi en circuit fermé." },
-    { name: "Attaque Trompowsky", moves: "1. d4 Cf6 2. Fg5", style: "Système/Agressif", difficulty: "Moyenne", desc: "Déséquilibre immédiat. Sort les Noirs de leur confort." },
-    { name: "Système Jobava", moves: "1. d4 d5 2. Cc3 Cf6 3. Ff4", style: "Système/Agressif", difficulty: "Moyenne", desc: "Un Londres sous stéroïdes, très incisif." },
-    { name: "Système Botvinnik", moves: "1. c4 2. Cc3 3. g3 4. e4", style: "Système/Hypermoderne", difficulty: "Moyenne", desc: "Un étau positionnel féroce issu de l'Anglaise." }
-  ],
-
-  blackOpenings: [
-    { name: "Sicilienne Dragon", moves: "1. e4 c5 2. Cf3 d6 3. d4 cxd4 4. Cxd4 Cf6 5. Cc3 g6", style: "Agressif", difficulty: "Élevée", desc: "Le fou g7 crache le feu sur la grande diagonale. Positions tranchantes et roques opposés." },
-    { name: "Sicilienne Najdorf", moves: "1. e4 c5 2. Cf3 d6 3. d4 cxd4 4. Cxd4 Cf6 5. Cc3 a6", style: "Universel", difficulty: "Très Élevée", desc: "L'arme de Fischer et Kasparov. Ultra-flexible, dynamique, mais exige une précision absolue." },
-    { name: "Défense Caro-Kann", moves: "1. e4 c6 2. d4 d5", style: "Système/Positionnel", difficulty: "Faible", desc: "Surnommée 'Le Roc'. Structure de pions impénétrable et d'excellentes finales." },
-    { name: "Défense Française", moves: "1. e4 e6 2. d4 d5", style: "Positionnel", difficulty: "Moyenne", desc: "Solide au centre, elle prépare de puissantes contre-attaques à l'aile dame." },
-    { name: "Défense Alekhine", moves: "1. e4 Cf6", style: "Hypermoderne", difficulty: "Élevée", desc: "Provoque l'avancée des pions blancs pour en faire des cibles géantes." },
-    { name: "Défense Scandinave", moves: "1. e4 d5", style: "Système/Agressif", difficulty: "Faible", desc: "Ouvre le jeu instantanément. Idéal pour dicter la structure dès le premier coup." },
-    { name: "Défense Pirc", moves: "1. e4 d6 2. d4 Cf6 3. Cc3 g6", style: "Hypermoderne", difficulty: "Moyenne", desc: "Laisse le centre aux Blancs pour organiser une contre-attaque foudroyante plus tard." },
-    { name: "Défense Est-Indienne", moves: "1. d4 Cf6 2. c4 g6 3. Cc3 Fg7", style: "Agressif/Hypermoderne", difficulty: "Élevée", desc: "Accepte un déficit d'espace pour préparer une attaque kamikaze sur le roi blanc." },
-    { name: "Défense Grünfeld", moves: "1. d4 Cf6 2. c4 g6 3. Cc3 d5", style: "Agressif/Hypermoderne", difficulty: "Très Élevée", desc: "Force l'échange au centre pour pilonner les pions blancs à distance avec les pièces." },
-    { name: "Défense Nimzo-Indienne", moves: "1. d4 Cf6 2. c4 e6 3. Cc3 Fb4", style: "Positionnel", difficulty: "Élevée", desc: "L'une des défenses les plus respectées. Lutte pour le contrôle des cases claires." },
-    { name: "Gambit Dame Refusé (Orthodoxe)", moves: "1. d4 d5 2. c4 e6", style: "Positionnel", difficulty: "Moyenne", desc: "Classique, saine et robuste. Priorise le développement en sécurité." },
-    { name: "Défense Slave", moves: "1. d4 d5 2. c4 c6", style: "Système/Positionnel", difficulty: "Moyenne", desc: "Soutient d5 sans enfermer le Fou de cases claires. Un mur de briques." },
-    { name: "Défense Semi-Slave", moves: "1. d4 d5 2. c4 c6 3. Cf3 Cf6 4. Cc3 e6", style: "Universel", difficulty: "Élevée", desc: "Le parfait compromis entre la solidité de la Slave et le dynamisme tactique complexe." },
-    { name: "Défense Hollandaise", moves: "1. d4 f5", style: "Agressif", difficulty: "Élevée", desc: "Déséquilibre immédiat pour lutter pour le contrôle de e4 et attaquer l'aile roi." },
-    { name: "Gambit Benko", moves: "1. d4 Cf6 2. c4 c5 3. d5 b5", style: "Agressif", difficulty: "Élevée", desc: "Sacrifie un pion à l'aile dame en échange d'une pression positionnelle écrasante à long terme." },
-    { name: "Défense Benoni", moves: "1. d4 Cf6 2. c4 c5 3. d5 e6", style: "Agressif", difficulty: "Élevée", desc: "Crée une asymétrie totale. Le fou noir en g7 devient un monstre sur la grande diagonale." },
-    { name: "Défense Tchigorine", moves: "1. d4 d5 2. c4 Cc6", style: "Agressif", difficulty: "Moyenne", desc: "Rejette les règles classiques du pion d. Fait sortir les cavaliers pour du jeu très direct." },
-    { name: "Défense Moderne", moves: "1. e4 g6 2. d4 Fg7", style: "Hypermoderne", difficulty: "Élevée", desc: "Peut être jouée contre n'importe quoi. Flexibilité absolue mais requiert une grande prudence." },
-    { name: "Défense Ouest-Indienne", moves: "1. d4 Cf6 2. c4 e6 3. Cf3 b6", style: "Positionnel", difficulty: "Élevée", desc: "Contrôle les cases centrales via un fianchetto rapide à l'aile dame." },
-    { name: "Défense Classique (1...e5)", moves: "1. e4 e5", style: "Positionnel", difficulty: "Moyenne", desc: "Le combat classique pour le centre. Mène à l'Espagnole ou l'Italienne." }
-  ]
+  }
 };
