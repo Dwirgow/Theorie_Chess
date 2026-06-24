@@ -416,7 +416,9 @@
                 setResult(null);
             };
 
-            const displayedOpenings = tableSide === 'white' ? data.whiteOpenings : data.blackOpenings;
+            const displayedOpenings = React.useMemo(() => {
+				return tableSide === 'white' ? data.whiteOpenings : data.blackOpenings;
+			}, [tableSide, data]);
 
             return (
                 <div className="space-y-12 animate-fade-in">
@@ -519,7 +521,7 @@
                                         if (op.style === "Système" || op.style.includes("Système")) badgeColor = "bg-emerald-950/40 text-emerald-400 border-emerald-900/50";
 
                                         return (
-                                            <tr key={i} className="hover:bg-neutral-800/30 transition-colors">
+                                            <tr key={op.id} className="hover:bg-neutral-800/30 transition-colors">
                                                 {/* Remplacement de whitespace-nowrap par break-words pour le retour à la ligne automatique */}
                                                 <td className="p-4 font-bold text-white text-sm sm:text-base break-words">{op.name}</td>
                                                 <td className="p-4">
