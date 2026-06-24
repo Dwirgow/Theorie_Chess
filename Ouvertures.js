@@ -538,6 +538,61 @@ window.OPENINGS_DATA = {
             }
           ]
         }
+      ],
+      exercises: [
+        {
+          id: 'eng-ex-1',
+          title: 'Structure en Sicilienne Inversée',
+          fen: 'r1bq1rk1/ppp1bppp/2np1n2/4p3/2P5/2N2NP1/PP1PPPBP/R1BQ1RK1 w - - 5 7', 
+          side: 'white',
+          steps: [
+            {
+              question: "Q1. En regardant le centre de l'échiquier, quelle est la cible principale de vos pièces et de vos pions en jouant l'Anglaise ?",
+              options: [
+                { text: "Occuper la case e4 avec un Cavalier.", isCorrect: false, feedback: "La case e4 est contestée par le pion e5 noir." },
+                { text: "Contrôler la case d5 à tout prix.", isCorrect: true, feedback: "Exact ! Le pion c4, le fou g2 et le cavalier c3 convergent tous vers d5." },
+                { text: "Lancer une marée de pions à l'aile Roi.", isCorrect: false, feedback: "Le centre n'est pas fermé, une attaque à l'aile roi serait suicidaire." },
+                { text: "Échanger immédiatement les Dames.", isCorrect: false, feedback: "Ce n'est ni possible ni souhaitable à ce stade." }
+              ]
+            },
+            {
+              question: "Q2. Observez la chaîne de pions adverse. Les Noirs ont un pion en e5 et d6. Vers où pointe leur avantage d'espace ?",
+              options: [
+                { text: "L'aile Dame.", isCorrect: false, feedback: "Regardez la diagonale d6-e5, elle pointe vers la droite." },
+                { text: "L'aile Roi.", isCorrect: true, feedback: "Oui. Les Noirs ont un avantage d'espace à l'aile roi, c'est donc de ce côté qu'ils chercheront à jouer." },
+                { text: "Le centre exact.", isCorrect: false, feedback: "Le centre est partagé de manière asymétrique." },
+                { text: "Ils n'ont aucun espace.", isCorrect: false, feedback: "Leur pion e5 leur octroie un bel espace." }
+              ]
+            },
+            {
+              question: "Q3. Puisque les Noirs jouent à l'aile Roi, de votre côté, quel est le levier typique pour créer des faiblesses chez l'adversaire ?",
+              options: [
+                { text: "Pousser f4 pour ouvrir l'aile Roi.", isCorrect: false, feedback: "C'est jouer sur le terrain fort de l'adversaire." },
+                { text: "Pousser e4 pour bloquer le centre.", isCorrect: false, feedback: "Cela enfermerait votre propre Fou en g2." },
+                { text: "Préparer l'avancée b4 puis b5.", isCorrect: true, feedback: "Parfait ! C'est l'attaque de minorité classique. b4-b5 va disloquer les pions noirs à l'aile Dame." },
+                { text: "Pousser h4 et h5.", isCorrect: false, feedback: "Votre roi roqué a besoin de son bouclier de pions." }
+              ]
+            },
+            {
+              question: "Q4. Pour préparer efficacement cette poussée b4, quelle manœuvre de pion est presque toujours nécessaire au préalable ?",
+              options: [
+                { text: "Jouer a3.", isCorrect: true, feedback: "Exactement. a3 soutient b4 et empêche le Cavalier noir de s'installer en b4." },
+                { text: "Jouer c5.", isCorrect: false, feedback: "C'est impossible car la case est contrôlée par le pion d6 noir." },
+                { text: "Jouer d4.", isCorrect: false, feedback: "d4 est une rupture centrale, pas une préparation pour l'aile dame." },
+                { text: "Jouer f3.", isCorrect: false, feedback: "Aucun rapport avec l'aile dame." }
+              ]
+            },
+            {
+              question: "Q5. Si les Noirs tentent de vous bloquer en jouant eux-mêmes ...a5, comment devez-vous positionner vos pièces lourdes pour soutenir b4 ?",
+              options: [
+                { text: "Mettre la Dame en a4.", isCorrect: false, feedback: "Trop exposée et déconnectée de la défense du centre." },
+                { text: "Placer la Tour en b1 (Tb1).", isCorrect: true, feedback: "Oui ! La Tour en b1 appuie la poussée b4 de manière inarrêtable." },
+                { text: "Ramener la Tour en c1.", isCorrect: false, feedback: "La colonne c est bloquée pour le moment." },
+                { text: "Jouer Ta2.", isCorrect: false, feedback: "Passif et maladroit." }
+              ]
+            }
+          ]
+        }
       ]
     }
   ],
@@ -1024,7 +1079,292 @@ window.OPENINGS_DATA = {
             }
           ]
         }
+      ],
+      exercises: [
+        {
+          id: 'cz-ex-1',
+          title: 'Manœuvres en centre fermé',
+          fen: 'r1bq1rk1/pp1n1ppp/2pb1n2/3p2B1/3P4/2N2N2/PPP1BPPP/R2Q1RK1 b - - 5 9',
+          side: 'black',
+          steps: [
+            {
+              question: "Q1. Quel est l'objectif principal du petit coup de pion ...c6 joué dès l'ouverture ?",
+              options: [
+                { text: "Préparer un fianchetto avec b6.", isCorrect: false, feedback: "Le fou de cases claires se développe souvent ailleurs dans la Pirc." },
+                { text: "Soutenir le pion d5 et préparer une attaque sur l'aile Dame avec ...b5.", isCorrect: true, feedback: "C'est exact. c6 solidifie le centre et sert de tremplin à l'expansion b5-a6." },
+                { text: "Empêcher le Cavalier blanc de venir en d5.", isCorrect: false, feedback: "C'est un bénéfice secondaire, mais pas l'objectif principal." },
+                { text: "Créer une case de fuite pour le Roi.", isCorrect: false, feedback: "Le Roi ira roquer." }
+              ]
+            },
+            {
+              question: "Q2. Regardez votre structure de pions centrale (c6-d5). S'il s'agissait d'une flèche, vers quel flanc pointe-t-elle ?",
+              options: [
+                { text: "L'aile Dame.", isCorrect: false, feedback: "Les pions montent de c6 vers d5, donc vers la droite." },
+                { text: "L'aile Roi.", isCorrect: true, feedback: "Exactement. Votre avantage spatial naturel se dirige vers l'aile Roi." },
+                { text: "Elle ne pointe nulle part.", isCorrect: false, feedback: "Toute chaîne diagonale indique une direction." },
+                { text: "Directement sur le Roi blanc.", isCorrect: false, feedback: "C'est un indicateur de zone, pas un viseur direct." }
+              ]
+            },
+            {
+              question: "Q3. Sachant que la structure pointe vers l'aile Roi, quel est le levier de rupture idéal pour ouvrir cette zone ?",
+              options: [
+                { text: "Pousser ...a5.", isCorrect: false, feedback: "C'est à l'aile Dame." },
+                { text: "Pousser ...c5.", isCorrect: false, feedback: "C'est une rupture centrale, utile, mais qui ne suit pas la direction de l'aile Roi." },
+                { text: "Pousser ...e5.", isCorrect: true, feedback: "C'est la rupture parfaite pour percuter le centre blanc et ouvrir les lignes vers le Roi." },
+                { text: "Pousser ...h6.", isCorrect: false, feedback: "C'est un coup prophylactique, pas une rupture." }
+              ]
+            },
+            {
+              question: "Q4. Pour préparer la poussée ...e5 efficacement, où le Cavalier d7 est-il souvent manœuvré si la position est bloquée ?",
+              options: [
+                { text: "Vers b6.", isCorrect: false, feedback: "Cela l'éloigne de l'action centrale." },
+                { text: "Il reste en d7.", isCorrect: false, feedback: "Il y est souvent passif s'il ne peut pas bondir." },
+                { text: "Vers f8, puis g6 ou e6.", isCorrect: true, feedback: "C'est la manœuvre classique hypermoderne pour améliorer la pire pièce et soutenir l'aile Roi." },
+                { text: "Il est sacrifié en c5.", isCorrect: false, feedback: "Aucun intérêt sans gain matériel immédiat." }
+              ]
+            },
+            {
+              question: "Q5. Psychologiquement, quel est le plus grand piège à éviter avec les Noirs dans cette structure ?",
+              options: [
+                { text: "S'impatienter et ouvrir le centre sans que les pièces soient prêtes.", isCorrect: true, feedback: "La Tchèque demande des nerfs d'acier. Ouvrir trop tôt favorise l'avantage d'espace blanc." },
+                { text: "Jouer trop vite.", isCorrect: false, feedback: "Valable pour toutes les ouvertures." },
+                { text: "Oublier de roquer.", isCorrect: false, feedback: "Le roque est généralement sécurisé assez vite." },
+                { text: "Échanger les Dames.", isCorrect: false, feedback: "L'échange des Dames est souvent favorable aux Noirs dans les structures fermées pour atténuer l'attaque." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+	{
+      id: 'alekhine',
+      name: 'Défense Alekhine',
+      moves: '1. e4 Cf6',
+      type: 'Hypermoderne, Provocatrice, Tactique',
+      description: 'Les Noirs invitent volontairement les pions blancs à avancer pour créer un centre imposant, avec l\'objectif de l\'attaquer et de le détruire par la suite.',
+      variations: [],
+      exercises: [
+        {
+          id: 'alk-ex-1',
+          title: 'Détruire le centre blanc',
+          fen: 'rnbqkb1r/ppp1pppp/5n2/3pP3/2P5/8/PP1P1PPP/RNBQKBNR b KQkq - 0 3',
+          side: 'black',
+          steps: [
+            {
+              question: "Q1. Quel est le principe philosophique derrière la Défense Alekhine face à l'avancée des pions blancs ?",
+              options: [
+                { text: "Créer un mur de pions symétrique.", isCorrect: false, feedback: "Au contraire, la structure devient très asymétrique." },
+                { text: "Provoquer l'extension du centre blanc pour en faire une cible.", isCorrect: true, feedback: "C'est le concept clé hypermoderne : un grand centre est puissant, mais c'est aussi une grande cible fragile." },
+                { text: "Échanger les pièces le plus vite possible.", isCorrect: false, feedback: "Les Blancs ayant plus d'espace, échanger les pièces les avantagerait." },
+                { text: "Jouer uniquement pour la finale.", isCorrect: false, feedback: "C'est une ouverture très dynamique et agressive en milieu de jeu." }
+              ]
+            },
+            {
+              question: "Q2. Dans la position actuelle (les Blancs viennent de jouer c4), que doit faire le Cavalier attaqué en d5 ?",
+              options: [
+                { text: "Prendre en c4 (dxc4).", isCorrect: false, feedback: "Impossible, le pion d5 n'est pas sur le plateau à côté de c4. Le cavalier est attaqué." },
+                { text: "Reculer en f6.", isCorrect: false, feedback: "Cela perdrait un temps énorme et abandonnerait le contrôle." },
+                { text: "Aller en b6.", isCorrect: true, feedback: "Exact. Le Cavalier se met en sécurité tout en gardant un œil sur les cases centrales claires d5 et c4." },
+                { text: "Sauter en e3.", isCorrect: false, feedback: "C'est un suicide tactique." }
+              ]
+            },
+            {
+              question: "Q3. Une fois que le centre blanc est massivement établi (pions en c4, d4, e5, f4 dans l'Attaque des 4 Pions), quel est votre levier principal ?",
+              options: [
+                { text: "Pousser ...g5.", isCorrect: false, feedback: "Affaiblit dangereusement votre propre aile roi." },
+                { text: "Pousser ...a6 et ...b5.", isCorrect: false, feedback: "C'est une attaque de flanc, or le problème principal se trouve au centre." },
+                { text: "Pousser ...c5 ou ...f6.", isCorrect: true, feedback: "Parfait. Il faut saper les fondations de la chaîne blanche (d4 ou e5) pour la faire s'effondrer." },
+                { text: "Jouer ...h6.", isCorrect: false, feedback: "Un coup d'attente inutile ici." }
+              ]
+            },
+            {
+              question: "Q4. Quel est le placement idéal de votre Fou de cases claires (c8) dans la plupart des variantes de l'Alekhine ?",
+              options: [
+                { text: "En d7 pour défendre passivement.", isCorrect: false, feedback: "Le Fou serait très passif." },
+                { text: "En g4 pour clouer le Cavalier f3.", isCorrect: true, feedback: "Oui ! Clouer le Cavalier f3 élimine un défenseur crucial du centre blanc." },
+                { text: "En b7 en fianchetto.", isCorrect: false, feedback: "La diagonale est souvent bloquée par la chaîne e5/d4." },
+                { text: "Il reste en c8 le plus longtemps possible.", isCorrect: false, feedback: "Il faut le développer." }
+              ]
+            },
+            {
+              question: "Q5. Si vous ne parvenez pas à générer des leviers rapides (...c5, ...f6) contre le centre blanc, quel est le risque principal ?",
+              options: [
+                { text: "Subir un manque d'espace et mourir étouffé.", isCorrect: true, feedback: "C'est le danger de l'Alekhine. Si le centre blanc survit, il écrase votre position par manque d'espace." },
+                { text: "Se faire mater en moins de 15 coups.", isCorrect: false, feedback: "Rare si vous ne faites pas de gaffe tactique directe." },
+                { text: "Perdre la finale de pions systématiquement.", isCorrect: false, feedback: "La structure de pions peut être saine malgré le manque d'espace." },
+                { text: "Avoir un mauvais Fou en c8.", isCorrect: false, feedback: "Contrairement à la Française, le Fou c8 sort généralement très bien." }
+              ]
+            }
+          ]
+        }
       ]
     }
+  ]
+};
+window.REPERTOIRE_BUILDER = {
+  quiz: [
+    {
+      question: "Q1. Face à un grand centre de pions adverse, quelle est votre réaction ?",
+      options: [
+        { text: "Je le pulvérise immédiatement avec des sacrifices de pièces.", style: "agressif" },
+        { text: "Je le bloque solidement avec mes propres pions au centre.", style: "positionnel" },
+        { text: "Parfait ! C'est une grande cible. Je vais le saper à distance avec des leviers latéraux.", style: "hypermoderne" },
+        { text: "Je m'en fiche, je développe mes pièces selon mon schéma habituel.", style: "systeme" },
+      ]
+    },
+    {
+      question: "Q2. Quelle phrase décrit le mieux votre gestion du temps dans l'ouverture ?",
+      options: [
+	    { text: "J'attends que l'adversaire s'engage pour choisir la meilleure rupture de pion.", style: "hypermoderne" },
+        { text: "Je joue mes 10 premiers coups en 30 secondes, les yeux fermés.", style: "systeme" },
+        { text: "Je prends mon temps pour construire une position sans aucune faiblesse.", style: "positionnel" },
+        { text: "Je cherche très vite la faille tactique pour écourter la partie.", style: "agressif" },
+      ]
+    },
+    {
+      question: "Q3. Quelle est votre pire phobie sur l'échiquier ?",
+      options: [
+        { text: "Une position complètement verrouillée où il n'y a pas de tactique.", style: "agressif" },
+		{ text: "Devoir défendre passivement sans pouvoir contre-attaquer avec mes pions.", style: "hypermoderne" },
+        { text: "Une position chaotique où je ne contrôle plus rien.", style: "positionnel" },
+        { text: "Qu'on me sorte de ma zone de confort et de mes plans connus dès le 2ème coup.", style: "systeme" },
+      ]
+    },
+    {
+      question: "Q4. En termes d'apprentissage théorique, vous êtes plutôt...",
+      options: [
+		{ text: "Zéro théorie : je veux un mur incassable qui marche contre tout.", style: "systeme" },
+        { text: "Structures : je veux comprendre où vont mes pions et comment gagner la finale.", style: "positionnel" },
+		{ text: "Lignes tranchantes : j'apprends les pièges mortels par cœur.", style: "agressif" },
+        { text: "Fianchettos et leviers : je retiens les idées de contre-attaque à distance.", style: "hypermoderne" }, 
+      ]
+    },
+    {
+      question: "Q5. Choisissez votre arme de prédilection :",
+      options: [
+        { text: "Le Cavalier : sauteur de lignes, roi des fourchettes et du chaos.", style: "agressif" },
+		{ text: "Le Pion : l'âme des échecs, bâtisseur de forteresses impénétrables.", style: "systeme" },
+        { text: "La Tour : pour dominer les colonnes ouvertes et ratisser la finale.", style: "positionnel" },
+        { text: "Le Fou en fianchetto : un sniper tapi dans l'ombre qui contrôle tout l'échiquier.", style: "hypermoderne" },
+      ]
+    }
+  ],
+  
+  profiles: {
+    pure_agressif: {
+      name: "Le Berserker (Agressif Classique)",
+      description: "Tactique frontale ! Vous occupez le centre et lancez vos pièces à l'assaut du Roi ennemi. Les sacrifices ne vous font pas peur.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Gambit Roi", 
+        "Défense contre e4 conseillée : Sicilienne Dragon", 
+        "Défense contre d4 conseillée : Défense Grünfeld"
+      ]
+    },
+    agressif_hypermoderne: {
+      name: "Le Sniper (Contre-Attaque)",
+      description: "Vous aimez laisser l'adversaire prendre le centre pour mieux le faire exploser ensuite. Vous cherchez le KO technique grâce au dynamisme de vos pièces.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Attaque Grand Prix", 
+        "Défense contre e4 conseillée : Défense Alekhine", 
+        "Défense contre d4 conseillée : Défense Est-Indienne"
+      ]
+    },
+    pure_positionnel: {
+      name: "Le Boa Constrictor (Stratégie Classique)",
+      description: "Vous étouffez votre adversaire. Vous aimez les centres fixes, les manœuvres lentes et la domination stratégique qui mène à une finale gagnante.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Gambit Dame", 
+        "Défense contre e4 conseillée : Défense Française", 
+        "Défense contre d4 conseillée : Gambit Dame Refusé (Orthodoxe)"
+      ]
+    },
+    positionnel_hypermoderne: {
+      name: "L'Architecte (Contrôle à distance)",
+      description: "Vous jouez sur les couleurs ! Vous contrôlez le centre à distance avec vos Fous et vos pions de flanc, créant des pressions invisibles mais mortelles.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Partie Catalane", 
+        "Défense contre e4 conseillée : Défense Caro-Kann", 
+        "Défense contre d4 conseillée : Défense Nimzo-Indienne"
+      ]
+    },
+    pure_systeme: {
+      name: "La Muraille (Pragmatique)",
+      description: "Vous détestez la théorie. Vous voulez déployer vos pièces exactement de la même manière à chaque partie derrière une structure de pions incassable.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Système de Londres", 
+        "Défense contre e4 conseillée : Défense Caro-Kann", 
+        "Défense contre d4 conseillée : Défense Slave"
+      ]
+    },
+    agressif_systeme: {
+      name: "Le Franc-Tireur (Système Offensif)",
+      description: "Vous aimez les schémas d'ouverture fixes, mais dans un seul but : lancer une attaque rapide et foudroyante sur le Roi adverse sans apprendre 20 coups de théorie.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Système Jobava", 
+        "Défense contre e4 conseillée : Défense Scandinave", 
+        "Défense contre d4 conseillée : Défense Tchigorine"
+      ]
+    },
+    systeme_hypermoderne: {
+      name: "Le Caméléon (Système Flexible)",
+      description: "Vous utilisez des structures hypermodernes mais de manière très systématique. Vous laissez le centre pour construire une attaque sur le flanc, peu importe la réponse adverse.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Attaque Est-Indienne", 
+        "Défense contre e4 conseillée : Défense Pirc", 
+        "Défense contre d4 conseillée : Défense Hollandaise"
+      ]
+    },
+    agressif_positionnel: {
+      name: "L'Attaquant Calculateur (Universel)",
+      description: "Vous cherchez l'initiative et l'attaque, mais en vous basant sur des principes classiques et sains. Vous ne sacrifiez pas sans garantie structurelle.",
+      suggestions: [
+        "Ouverture avec les Blancs conseillée : Partie Italienne", 
+        "Défense contre e4 conseillée : Sicilienne Najdorf", 
+        "Défense contre d4 conseillée : Défense Semi-Slave"
+      ]
+    }
+  },
+  
+  whiteOpenings: [
+    { name: "Gambit Roi", moves: "1. e4 e5 2. f4", style: "Agressif", difficulty: "Élevée", desc: "Le roi des gambits romantiques. Attaque foudroyante sur f7." },
+    { name: "Partie Écossaise", moves: "1. e4 e5 2. Cf3 Cc6 3. d4", style: "Agressif", difficulty: "Moyenne", desc: "Ouvre le centre immédiatement pour un combat tactique." },
+    { name: "Gambit Danois", moves: "1. e4 e5 2. d4 exd4 3. c3", style: "Agressif", difficulty: "Moyenne", desc: "Sacrifie deux pions pour une paire de fous terrifiante." },
+    { name: "Attaque Grand Prix", moves: "1. e4 c5 2. Cc3 (puis f4)", style: "Agressif/Système", difficulty: "Faible", desc: "L'arme anti-Sicilienne la plus brutale pour mater." },
+    { name: "Viennoise", moves: "1. e4 e5 2. Cc3", style: "Agressif/Positionnel", difficulty: "Moyenne", desc: "Développement sain avec de violentes idées d'attaque (f4)." },
+    { name: "Partie Espagnole", moves: "1. e4 e5 2. Cf3 Cc6 3. Fb5", style: "Positionnel", difficulty: "Très Élevée", desc: "Luttes stratégiques complexes et durables." },
+    { name: "Gambit Dame", moves: "1. d4 d5 2. c4", style: "Positionnel", difficulty: "Élevée", desc: "Pression constante sur le centre, jeu extrêmement sain." },
+    { name: "Partie Italienne", moves: "1. e4 e5 2. Cf3 Cc6 3. Fc4", style: "Universel", difficulty: "Moyenne", desc: "Permet un jeu lent (d3) ou des attaques violentes." },
+    { name: "Ouverture Anglaise", moves: "1. c4", style: "Hypermoderne", difficulty: "Élevée", desc: "Contrôle central par les flancs. Extrêmement flexible." },
+    { name: "Ouverture Réti", moves: "1. Cf3", style: "Hypermoderne", difficulty: "Élevée", desc: "Attaque le centre adverse avec des pièces depuis les coulisses." },
+    { name: "Partie Catalane", moves: "1. d4 Cf6 2. c4 e6 3. g3", style: "Hypermoderne", difficulty: "Très Élevée", desc: "Solidité de d4 mixée à la pression du fou g2." },
+    { name: "Système de Londres", moves: "1. d4 2. Ff4", style: "Système", difficulty: "Faible", desc: "Une pyramide indestructible. Jouable contre presque tout." },
+    { name: "Système Colle", moves: "1. d4 2. Cf3 3. e3", style: "Système", difficulty: "Faible", desc: "Ferme le centre pour préparer une attaque avec le fou d3." },
+    { name: "Attaque Est-Indienne", moves: "1. Cf3 2. g3 3. Fg2", style: "Système/Hypermoderne", difficulty: "Moyenne", desc: "Redoutable attaque à l'aile roi en circuit fermé." },
+    { name: "Attaque Trompowsky", moves: "1. d4 Cf6 2. Fg5", style: "Système/Agressif", difficulty: "Moyenne", desc: "Déséquilibre immédiat. Sort les Noirs de leur confort." },
+    { name: "Système Jobava", moves: "1. d4 d5 2. Cc3 Cf6 3. Ff4", style: "Système/Agressif", difficulty: "Moyenne", desc: "Un Londres sous stéroïdes, très incisif." },
+    { name: "Système Botvinnik", moves: "1. c4 2. Cc3 3. g3 4. e4", style: "Système/Hypermoderne", difficulty: "Moyenne", desc: "Un étau positionnel féroce issu de l'Anglaise." }
+  ],
+
+  blackOpenings: [
+    { name: "Sicilienne Dragon", moves: "1. e4 c5 2. Cf3 d6 3. d4 cxd4 4. Cxd4 Cf6 5. Cc3 g6", style: "Agressif", difficulty: "Élevée", desc: "Le fou g7 crache le feu sur la grande diagonale. Positions tranchantes et roques opposés." },
+    { name: "Sicilienne Najdorf", moves: "1. e4 c5 2. Cf3 d6 3. d4 cxd4 4. Cxd4 Cf6 5. Cc3 a6", style: "Universel", difficulty: "Très Élevée", desc: "L'arme de Fischer et Kasparov. Ultra-flexible, dynamique, mais exige une précision absolue." },
+    { name: "Défense Caro-Kann", moves: "1. e4 c6 2. d4 d5", style: "Système/Positionnel", difficulty: "Faible", desc: "Surnommée 'Le Roc'. Structure de pions impénétrable et d'excellentes finales." },
+    { name: "Défense Française", moves: "1. e4 e6 2. d4 d5", style: "Positionnel", difficulty: "Moyenne", desc: "Solide au centre, elle prépare de puissantes contre-attaques à l'aile dame." },
+    { name: "Défense Alekhine", moves: "1. e4 Cf6", style: "Hypermoderne", difficulty: "Élevée", desc: "Provoque l'avancée des pions blancs pour en faire des cibles géantes." },
+    { name: "Défense Scandinave", moves: "1. e4 d5", style: "Système/Agressif", difficulty: "Faible", desc: "Ouvre le jeu instantanément. Idéal pour dicter la structure dès le premier coup." },
+    { name: "Défense Pirc", moves: "1. e4 d6 2. d4 Cf6 3. Cc3 g6", style: "Hypermoderne", difficulty: "Moyenne", desc: "Laisse le centre aux Blancs pour organiser une contre-attaque foudroyante plus tard." },
+    { name: "Défense Est-Indienne", moves: "1. d4 Cf6 2. c4 g6 3. Cc3 Fg7", style: "Agressif/Hypermoderne", difficulty: "Élevée", desc: "Accepte un déficit d'espace pour préparer une attaque kamikaze sur le roi blanc." },
+    { name: "Défense Grünfeld", moves: "1. d4 Cf6 2. c4 g6 3. Cc3 d5", style: "Agressif/Hypermoderne", difficulty: "Très Élevée", desc: "Force l'échange au centre pour pilonner les pions blancs à distance avec les pièces." },
+    { name: "Défense Nimzo-Indienne", moves: "1. d4 Cf6 2. c4 e6 3. Cc3 Fb4", style: "Positionnel", difficulty: "Élevée", desc: "L'une des défenses les plus respectées. Lutte pour le contrôle des cases claires." },
+    { name: "Gambit Dame Refusé (Orthodoxe)", moves: "1. d4 d5 2. c4 e6", style: "Positionnel", difficulty: "Moyenne", desc: "Classique, saine et robuste. Priorise le développement en sécurité." },
+    { name: "Défense Slave", moves: "1. d4 d5 2. c4 c6", style: "Système/Positionnel", difficulty: "Moyenne", desc: "Soutient d5 sans enfermer le Fou de cases claires. Un mur de briques." },
+    { name: "Défense Semi-Slave", moves: "1. d4 d5 2. c4 c6 3. Cf3 Cf6 4. Cc3 e6", style: "Universel", difficulty: "Élevée", desc: "Le parfait compromis entre la solidité de la Slave et le dynamisme tactique complexe." },
+    { name: "Défense Hollandaise", moves: "1. d4 f5", style: "Agressif", difficulty: "Élevée", desc: "Déséquilibre immédiat pour lutter pour le contrôle de e4 et attaquer l'aile roi." },
+    { name: "Gambit Benko", moves: "1. d4 Cf6 2. c4 c5 3. d5 b5", style: "Agressif", difficulty: "Élevée", desc: "Sacrifie un pion à l'aile dame en échange d'une pression positionnelle écrasante à long terme." },
+    { name: "Défense Benoni", moves: "1. d4 Cf6 2. c4 c5 3. d5 e6", style: "Agressif", difficulty: "Élevée", desc: "Crée une asymétrie totale. Le fou noir en g7 devient un monstre sur la grande diagonale." },
+    { name: "Défense Tchigorine", moves: "1. d4 d5 2. c4 Cc6", style: "Agressif", difficulty: "Moyenne", desc: "Rejette les règles classiques du pion d. Fait sortir les cavaliers pour du jeu très direct." },
+    { name: "Défense Moderne", moves: "1. e4 g6 2. d4 Fg7", style: "Hypermoderne", difficulty: "Élevée", desc: "Peut être jouée contre n'importe quoi. Flexibilité absolue mais requiert une grande prudence." },
+    { name: "Défense Ouest-Indienne", moves: "1. d4 Cf6 2. c4 e6 3. Cf3 b6", style: "Positionnel", difficulty: "Élevée", desc: "Contrôle les cases centrales via un fianchetto rapide à l'aile dame." },
+    { name: "Défense Classique (1...e5)", moves: "1. e4 e5", style: "Positionnel", difficulty: "Moyenne", desc: "Le combat classique pour le centre. Mène à l'Espagnole ou l'Italienne." }
   ]
 };
