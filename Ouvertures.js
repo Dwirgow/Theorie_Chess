@@ -407,6 +407,61 @@ window.OPENINGS_DATA = {
             }
           ]
         }
+      ],
+	  exercises: [
+        {
+          id: 'qgr-ex-1',
+          title: 'Maîtriser la structure Carlsbad et le PDI',
+          fen: 'r1bqr1k1/pp1n1ppp/2p2n2/3p2B1/2PP4/2NBP3/P1Q1NPPP/R4RK1 w - - 0 11',
+          side: 'white',
+          steps: [
+            {
+              question: "Q1. Quel est l'intérêt stratégique principal de jouer la Variante d'Échange (cxd5) rapidement dans le Gambit Dame Refusé ?",
+              options: [
+                { text: "Gagner un pion central.", isCorrect: false, feedback: "Les Noirs reprennent immédiatement en d5, le matériel reste égal." },
+                { text: "Figer la structure de pions (Carlsbad) pour obtenir des plans de milieu de partie extrêmement clairs et dicter le rythme.", isCorrect: true, feedback: "C'est tout l'intérêt ! En figeant le centre, vous forcez la partie dans un schéma que vous connaissez par cœur, limitant le contre-jeu noir." },
+                { text: "Préparer un grand roque.", isCorrect: false, feedback: "Les Blancs roquent presque toujours du petit côté dans cette variante." },
+                { text: "Échanger les Dames rapidement.", isCorrect: false, feedback: "La Dame blanche est très utile (souvent en c2) pour soutenir l'attaque." }
+              ]
+            },
+            {
+              question: "Q2. Dans la structure Carlsbad, quel est l'objectif de la fameuse 'attaque de minorité' ?",
+              options: [
+                { text: "Avancer les pions a et b (b4-b5) pour forcer un échange en c6 et créer un pion noir faible et arriéré sur une colonne ouverte.", isCorrect: true, feedback: "Exactement. Vous utilisez vos 2 pions (minorité) contre leurs 3 pions (majorité) pour abîmer leur structure, puis vous attaquez le pion c6 malade." },
+                { text: "Attaquer le Roi noir avec moins de pièces que lui.", isCorrect: false, feedback: "C'est une attaque positionnelle sur l'aile-Dame, pas une attaque sur le Roi." },
+                { text: "Sacrifier un pion à l'aile-Dame pour ouvrir des lignes.", isCorrect: false, feedback: "Le but n'est pas de sacrifier, mais d'échanger." },
+                { text: "Bloquer totalement l'aile-Dame.", isCorrect: false, feedback: "Le but est d'ouvrir la colonne c ou b pour vos Tours." }
+              ]
+            },
+            {
+              question: "Q3. Si vous choisissez plutôt l'attaque centrale (le plan Botvinnik) dans la Carlsbad, quelle est la manœuvre clé ?",
+              options: [
+                { text: "Placer le Cavalier en e2, puis pousser f3 suivi de la rupture agressive e4.", isCorrect: true, feedback: "Parfait. Ce plan rouleau compresseur écrase le centre noir et mène souvent à de violentes attaques de mat." },
+                { text: "Pousser c5 pour verrouiller le pion d5.", isCorrect: false, feedback: "Ceci relâche la tension et donne souvent aux Noirs la case e5 pour leur Cavalier." },
+                { text: "Mettre les deux Cavaliers en f3 et c3, puis pousser d5.", isCorrect: false, feedback: "Le pion f3 est essentiel pour soutenir e4 sans bloquer le Cavalier (qui doit donc aller en e2)." },
+                { text: "Jouer Fxf6 le plus vite possible.", isCorrect: false, feedback: "Garder le Fou g5 pour maintenir la pression est souvent meilleur." }
+              ]
+            },
+            {
+              question: "Q4. Dans le Gambit Dame (Accepté ou refusé avec c5), si vous vous retrouvez avec un Pion Dame Isolé (PDI) en d4, quel est votre atout principal ?",
+              options: [
+                { text: "Une forteresse impénétrable en finale.", isCorrect: false, feedback: "Le PDI est justement une faiblesse en finale !" },
+                { text: "Un avantage d'espace, le contrôle de la case clé e5 pour votre Cavalier, et des lignes ouvertes pour attaquer le Roi.", isCorrect: true, feedback: "C'est le contrat du PDI : vous acceptez une faiblesse à long terme en échange d'une activité maximale et foudroyante en milieu de jeu." },
+                { text: "La possibilité de pousser c5.", isCorrect: false, feedback: "Vous n'avez plus de pion c dans la structure du PDI." },
+                { text: "Le fait que l'adversaire ait des pions doublés.", isCorrect: false, feedback: "Les Noirs n'ont généralement pas de pions doublés face au PDI." }
+              ]
+            },
+            {
+              question: "Q5. Quelle est la règle d'or stratégique lorsque vous jouez AVEC le Pion Dame Isolé ?",
+              options: [
+                { text: "Éviter à tout prix l'échange des pièces mineures, car cela dissipe votre potentiel d'attaque et expose votre pion faible.", isCorrect: true, feedback: "C'est vital. Sans pièces mineures, l'attaque sur le Roi s'évapore, et votre pion d4 devient une simple cible pour la finale." },
+                { text: "Échanger toutes les pièces pour aller vite en finale.", isCorrect: false, feedback: "La finale est votre pire ennemie avec un PDI." },
+                { text: "Toujours sacrifier le pion d4 au 15ème coup.", isCorrect: false, feedback: "La poussée d4-d5 est souvent un sacrifice mortel, mais seulement si les conditions tactiques sont réunies, pas systématiquement." },
+                { text: "Protéger le pion d4 avec votre Roi.", isCorrect: false, feedback: "Le Roi doit être roqué en sécurité." }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -1614,8 +1669,63 @@ window.OPENINGS_DATA = {
         }
       ]
     }
-  ]
-},
+  ],
+  exercises: [
+        {
+          id: 'ni-ex-1',
+          title: 'Contrôle par les pièces et pions doublés',
+          fen: 'rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4',
+          side: 'black',
+          steps: [
+            {
+              question: "Q1. Dans la position de base de la Nimzo-Indienne, quel est le but principal du coup 3... Fb4 ?",
+              options: [
+                { text: "Préparer un fianchetto rapide.", isCorrect: false, feedback: "Le Fou est déjà sorti, ce n'est pas un fianchetto." },
+                { text: "Clouer le Cavalier c3 pour l'empêcher de soutenir la poussée e4 et contrôler le centre avec les pièces.", isCorrect: true, feedback: "C'est l'essence de l'ouverture ! Plutôt que d'occuper le centre avec d5, on paralyse le Cavalier blanc qui voulait soutenir e4." },
+                { text: "Attaquer le Roi blanc le plus vite possible.", isCorrect: false, feedback: "La position est trop fermée pour une attaque directe si tôt." },
+                { text: "Protéger le pion c7.", isCorrect: false, feedback: "Le pion c7 n'est pas attaqué." }
+              ]
+            },
+            {
+              question: "Q2. Si les Blancs jouent la variante Sämisch (4. a3), exigeant votre Fou immédiatement, que devez-vous faire ?",
+              options: [
+                { text: "Reculer le Fou en e7.", isCorrect: false, feedback: "Cela perdrait un temps précieux et donnerait le centre aux Blancs." },
+                { text: "Prendre le Cavalier (4... Fxc3+) pour doubler les pions blancs sur la colonne c.", isCorrect: true, feedback: "Exact ! On cède la paire de Fous, mais on dégrade irrémédiablement la structure de pions blanche. Les pions c3/c4 deviendront notre cible." },
+                { text: "Défendre le Fou avec ...a5.", isCorrect: false, feedback: "Les Blancs prendraient quand même et la structure noire serait affaiblie." },
+                { text: "Ignorer et roquer.", isCorrect: false, feedback: "Vous perdriez simplement votre Fou." }
+              ]
+            },
+            {
+              question: "Q3. Une fois les pions blancs doublés sur la colonne c, quel est votre plan de siège typique ?",
+              options: [
+                { text: "Jouer uniquement sur l'aile Roi avec ...g5.", isCorrect: false, feedback: "C'est une attaque de flanc risquée qui ignore la faiblesse blanche." },
+                { text: "Échanger les Dames rapidement.", isCorrect: false, feedback: "Sans les Dames, l'attaque sur les pions faibles est moins percutante." },
+                { text: "Fixer la faiblesse avec ...c5, puis l'attaquer avec ...b6, ...Fa6, ...Cc6 et ...Ca5.", isCorrect: true, feedback: "C'est la manœuvre mécanique parfaite. Toutes vos pièces mineures vont braquer le pion c4 incapable d'être défendu par un autre pion." },
+                { text: "Pousser ...d5 pour ouvrir le centre.", isCorrect: false, feedback: "Ouvrir le centre favorise la paire de Fous des Blancs, il faut le garder fermé." }
+              ]
+            },
+            {
+              question: "Q4. Si les Blancs jouent 4. Fd2 ou 4. Dc2 pour éviter de doubler leurs pions, quel inconvénient subissent-ils ?",
+              options: [
+                { text: "Ils perdent un pion.", isCorrect: false, feedback: "Non, le matériel reste égal." },
+                { text: "Ils perdent du temps de développement (ou déploient mal leurs pièces), vous permettant de frapper vite avec ...c5 ou ...Ce4.", isCorrect: true, feedback: "Oui ! En voulant garder une structure parfaite, les Blancs ralentissent leur initiative, ce dont vous profitez pour agir au centre." },
+                { text: "Leur Roi ne peut plus roquer.", isCorrect: false, feedback: "Rien ne les empêche de roquer plus tard." },
+                { text: "Ils doivent sacrifier leur Dame.", isCorrect: false, feedback: "C'est complètement faux." }
+              ]
+            },
+            {
+              question: "Q5. Stratégiquement, si vous échangez votre Fou de cases noires en c3, sur quelle couleur de cases devez-vous placer vos pions centraux ?",
+              options: [
+                { text: "Sur les cases claires, pour laisser la place aux Cavaliers.", isCorrect: false, feedback: "Cela rendrait votre propre Fou de cases claires inactif." },
+                { text: "Peu importe la couleur.", isCorrect: false, feedback: "La couleur des cases est cruciale quand on perd un Fou." },
+                { text: "Sur les cases noires (comme ...d6 et ...e5) pour compenser l'absence de votre Fou et bloquer le Fou de cases claires adverse.", isCorrect: true, feedback: "Parfait. Placer vos pions sur cases noires crée un mur sur la couleur que vous ne contrôlez plus avec votre Fou." },
+                { text: "Vous ne devez plus avancer vos pions centraux.", isCorrect: false, feedback: "C'est une stratégie trop passive." }
+              ]
+            }
+          ]
+        }
+      ]
+	},
 {
   id: 'bogo-indian',
   name: 'Défense Bogo-Indienne',
@@ -1697,8 +1807,63 @@ window.OPENINGS_DATA = {
         }
       ]
     }
-  ]
-},
+  ],
+  exercises: [
+        {
+          id: 'bi-ex-1',
+          title: 'Résoudre le problème du développement',
+          fen: 'rnbqk2r/pppp1ppp/4pn2/8/1bPP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 1 4',
+          side: 'black',
+          steps: [
+            {
+              question: "Q1. Pourquoi jouez-vous la Bogo-Indienne (3... Fb4+) au lieu de la Nimzo-Indienne ?",
+              options: [
+                { text: "Parce que c'est plus agressif.", isCorrect: false, feedback: "La Bogo est généralement plus solide et positionnelle." },
+                { text: "Parce que les Blancs ont joué 3. Cf3 au lieu de 3. Cc3, évitant le clouage et les pions doublés.", isCorrect: true, feedback: "Exact. Le Cavalier n'étant pas en c3, la Nimzo est impossible. L'échec en b4 permet de forcer une concession de développement blanche." },
+                { text: "Pour gagner un pion immédiatement.", isCorrect: false, feedback: "Aucun pion n'est prenable ici." },
+                { text: "Pour forcer l'échange des Dames.", isCorrect: false, feedback: "L'échec n'implique pas les Dames." }
+              ]
+            },
+            {
+              question: "Q2. Si les Blancs bloquent l'échec de la manière la plus classique (4. Fd2), quelle est la réponse noire la plus solide ?",
+              options: [
+                { text: "Jouer 4... Fxd2+ immédiatement.", isCorrect: false, feedback: "C'est possible, mais cela aide les Blancs à développer leur Dame ou leur Cavalier sans rien demander en retour." },
+                { text: "Défendre le Fou avec 4... De7 ou 4... a5.", isCorrect: true, feedback: "Oui ! Ainsi, si les Blancs initient l'échange, votre Dame (ou votre Tour via la colonne a) sera idéalement placée." },
+                { text: "Reculer le Fou en e7.", isCorrect: false, feedback: "Cela ferait perdre un temps de développement précieux." },
+                { text: "Pousser 4... c5.", isCorrect: false, feedback: "Le Fou en b4 serait en prise." }
+              ]
+            },
+            {
+              question: "Q3. Que se passe-t-il tactiquement si vous jouez 4... a5 et que les Blancs prennent votre Fou (5. Fxb4) ?",
+              options: [
+                { text: "Vous perdez une pièce.", isCorrect: false, feedback: "Vous reprenez avec le pion a." },
+                { text: "Vous reprenez avec ...axb4, ce qui ouvre la colonne 'a' pour votre Tour et contrôle la case c3.", isCorrect: true, feedback: "C'est l'idée moderne de la ligne avec a5 ! Votre Tour entre en jeu sans même avoir bougé." },
+                { text: "Vous devez abandonner.", isCorrect: false, feedback: "La position est tout à fait jouable et égale." },
+                { text: "Vous gagnez le Cavalier f3.", isCorrect: false, feedback: "Il n'y a pas de lien direct avec le Cavalier f3." }
+              ]
+            },
+            {
+              question: "Q4. Si les Blancs refusent l'échange et bloquent avec le Cavalier (4. Cbd2), quel est leur principal désavantage ?",
+              options: [
+                { text: "Le Cavalier d2 bouche la vue du Fou c1 et ralentit tout le développement de l'aile-Dame.", isCorrect: true, feedback: "Exactement. L'harmonie des pièces blanches est temporairement brisée, ce qui vous laisse le temps de vous développer confortablement." },
+                { text: "Ils perdent le pion d4.", isCorrect: false, feedback: "Le pion d4 reste défendu par le Cavalier f3 et la Dame." },
+                { text: "Ils ne peuvent plus roquer.", isCorrect: false, feedback: "Rien ne les empêche de roquer après avoir bougé le Fou f1." },
+                { text: "Leur Dame est clouée.", isCorrect: false, feedback: "Aucun clouage ne pèse sur la Dame." }
+              ]
+            },
+            {
+              question: "Q5. Stratégiquement, si les Fous de cases noires s'échangent (ex: Fxd2+), comment allez-vous déployer vos pions centraux ?",
+              options: [
+                { text: "Je les garde sur la 7ème rangée.", isCorrect: false, feedback: "Il faut contester le centre." },
+                { text: "Je pousse ...c5 et ...d5 pour tout ouvrir.", isCorrect: false, feedback: "Ouvrir précipitamment n'est pas le style de la Bogo-Indienne." },
+                { text: "Je place mes pions sur les cases noires (le duo ...d6 et ...e5) pour limiter le Fou blanc restant.", isCorrect: true, feedback: "C'est la règle d'or des Indiennes sans le Fou de cases noires. Vous construisez un mur sur la couleur manquante." },
+                { text: "J'attaque avec ...f5 (Hollandaise).", isCorrect: false, feedback: "C'est une structure différente qui affaiblit le Roi." }
+              ]
+            }
+          ]
+        }
+      ]
+	},
 {
   id: 'sicilian-taimanov',
   name: 'Sicilienne Taimanov',
@@ -1780,8 +1945,63 @@ window.OPENINGS_DATA = {
         }
       ]
     }
-  ]
-},
+  ],
+  exercises: [
+        {
+          id: 'st-ex-1',
+          title: 'Flexibilité et Contre-attaque au centre',
+          fen: 'r1b1kbnr/ppqp1ppp/2n1p3/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq - 1 6',
+          side: 'black',
+          steps: [
+            {
+              question: "Q1. Pourquoi la Dame est-elle développée en c7 si tôt (5... Dc7) dans la Taimanov ?",
+              options: [
+                { text: "Pour attaquer le pion h2.", isCorrect: false, feedback: "La diagonale vers h2 est bloquée." },
+                { text: "Pour contrôler la case clé e5, surveiller la colonne c semi-ouverte et faire de la place en d8 pour la Tour.", isCorrect: true, feedback: "Parfait. C'est un placement multi-fonctions qui prévient l'expansion blanche et prépare le jeu de pièces." },
+                { text: "Pour préparer un grand roque rapide.", isCorrect: false, feedback: "Le grand roque est très rare pour les Noirs dans la Sicilienne." },
+                { text: "Pour sacrifier la Dame contre deux Tours.", isCorrect: false, feedback: "Il n'y a aucune combinaison de ce genre ici." }
+              ]
+            },
+            {
+              question: "Q2. Quelle est la particularité du développement du Cavalier g8 dans cette ouverture ?",
+              options: [
+                { text: "Il va toujours en f6 très vite.", isCorrect: false, feedback: "C'est le cas dans la Najdorf, mais pas toujours dans la Taimanov." },
+                { text: "Il reste en g8 toute la partie.", isCorrect: false, feedback: "Il doit sortir pour permettre le roque." },
+                { text: "Il est souvent développé en e7 plutôt qu'en f6 pour éviter les clouages (Fg5) et garder la diagonale de la Dame ouverte.", isCorrect: true, feedback: "C'est la signature de la Taimanov. En e7, le Cavalier est flexible et prépare le soutien de Cc6." },
+                { text: "Il est sacrifié en g4.", isCorrect: false, feedback: "Il n'y a pas de cible en g4." }
+              ]
+            },
+            {
+              question: "Q3. Quel est l'objectif structurel majeur que vous menacez en permanence d'exécuter ?",
+              options: [
+                { text: "Pousser ...a6 et ...b5 pour faire un mat.", isCorrect: false, feedback: "L'aile-Dame sert au développement, rarement au mat direct." },
+                { text: "La rupture centrale ...d5 en un seul coup.", isCorrect: true, feedback: "Oui ! Contrairement à d'autres Siciliennes où le pion est en d6, la Taimanov garde le pion en d7 pour le balancer en d5 dès que les Blancs jouent passivement." },
+                { text: "Pousser ...f5 pour attaquer l'aile-Roi.", isCorrect: false, feedback: "C'est un plan de la Sicilienne fermée, pas de la Taimanov." },
+                { text: "Bloquer le centre avec ...e5.", isCorrect: false, feedback: "Jouer ...e5 créerait un trou mortel en d5 pour le Cavalier blanc." }
+              ]
+            },
+            {
+              question: "Q4. À quoi sert la poussée quasi systématique ...a6 autour du 6ème coup ?",
+              options: [
+                { text: "À interdire la case b5 au Cavalier d4 blanc (qui harcèlerait la Dame c7) et préparer l'expansion ...b5.", isCorrect: true, feedback: "C'est le coup prophylactique et offensif parfait. Il sécurise votre Dame et lance l'assaut sur l'aile-Dame." },
+                { text: "À faire une case de fuite pour le Roi.", isCorrect: false, feedback: "Le Roi ne fuit jamais par l'aile-Dame ici." },
+                { text: "À donner un temps d'avance aux Blancs.", isCorrect: false, feedback: "C'est un coup très utile, pas une perte de temps." },
+                { text: "À attaquer le Fou de cases claires.", isCorrect: false, feedback: "Le Fou n'est pas encore menacé." }
+              ]
+            },
+            {
+              question: "Q5. Face à un joueur qui utilise des Anti-Siciliennes passives au 2ème coup (comme 2. Cc3 ou 2. d3), quelle est la meilleure réaction philosophique de la Taimanov ?",
+              options: [
+                { text: "Jouer la symétrie absolue.", isCorrect: false, feedback: "La symétrie donne l'avantage au trait (les Blancs)." },
+                { text: "Paniquer et échanger toutes les pièces.", isCorrect: false, feedback: "Il faut garder la tension." },
+                { text: "Ignorer les attaques sur les ailes, se développer sainement (...Cc6, ...e6) et frapper violemment le centre avec ...d5.", isCorrect: true, feedback: "La réponse universelle ! Une attaque latérale lente est toujours détruite par une contre-attaque fulgurante au centre." },
+                { text: "Abandonner le centre et jouer sur l'aile-Roi.", isCorrect: false, feedback: "Le centre est la clé de l'échiquier." }
+              ]
+            }
+          ]
+        }
+      ]
+	},
     {
       id: 'czech-pirc',
       name: 'Défense Tchèque (Pirc)',
