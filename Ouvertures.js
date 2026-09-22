@@ -1533,6 +1533,255 @@ window.OPENINGS_DATA = {
         }
       ]
     },
+{
+  id: 'nimzo-indian',
+  name: 'Défense Nimzo-Indienne',
+  moves: '1. d4 Cf6 2. c4 e6 3. Cc3 Fb4',
+  type: 'Hypermoderne, Dynamique, Asymétrique',
+  description: 'La meilleure arme pour dicter le rythme avec les Noirs contre d4. Le contrôle central se fait avec les pièces (clouage du Cc3) plutôt qu\'avec les pions.',
+  pros: ['Déséquilibre immédiat de la structure blanche', 'Développement ultra rapide', 'Jeu très flexible (blocage ou ouverture du centre)'],
+  cons: ['On cède souvent la paire de Fous', 'Les Blancs peuvent l\'éviter avec 3. Cf3'],
+  variations: [
+    {
+      id: "ni-v1",
+      name: 'Variante Sämisch (4. a3)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 c5 6. e3 b6 7. Bd3 Ba6 8. Ne2 Nc6 9. O-O Na5 10. e4 d6',
+      theory: 'Les Blancs exigent le Fou immédiatement. Les Noirs acceptent de donner la paire de Fous pour doubler les pions blancs sur la colonne c et en faire des cibles.',
+      pros: ['Crée une faiblesse permanente évidente chez les Blancs (les pions c)', 'Plan de jeu très mécanique et facile à dérouler', 'Entrave le développement classique de l\'adversaire'],
+      cons: ['Donne la paire de Fous aux Blancs', 'Si le centre s\'ouvre prématurément, l\'avantage blanc est massif'],
+      strategy: 'Faire le siège absolu du pion c4. Verrouiller la position et déployer la formation ...c5, ...b6, ...Fa6, ...Cc6 et ...Ca5.',
+      keyMoves: ['Bxc3+', 'b6', 'Ba6'],
+      subVariations: [
+        {
+          id: "ni-v1-sv1",
+          name: 'Développement hésitant 6. Nf3?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 c5 6. Nf3?! b6 7. Bg5 h6 8. Bh4 Ba6 9. e3 Nc6 10. Bd3 Na5',
+          explanation: "Dans la Sämisch, le Cavalier blanc doit aller en e2 (pour soutenir f3 ou Ng3). Le mettre en f3 l'expose au clouage et n'aide pas à protéger les pions doublés. Les Noirs appliquent leur plan de siège sans résistance."
+        },
+        {
+          id: "ni-v1-sv2",
+          name: 'Ignorer la menace 8. O-O?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 c5 6. e3 b6 7. Bd3 Ba6 8. O-O?! Nc6 9. Nd2 Na5 10. Qe2 Rc8',
+          explanation: "Roquer trop tôt sans avoir défendu le pion c4 (généralement via Ne2) permet aux Noirs de gagner des temps précieux sur l'attaque du pion. La position blanche devient passive très rapidement."
+        }
+      ]
+    },
+    {
+      id: "ni-v2",
+      name: 'Variante avec Fd2 (4. Bd2)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bd2 O-O 5. a3 Bxc3 6. Bxc3 Ne4 7. Qc2 Nxc3 8. Qxc3 d5 9. e3 b6 10. Nf3 Bb7',
+      theory: 'Une ligne passive où les Blancs veulent éviter les pions doublés à tout prix en brisant le clouage avec le Fou.',
+      pros: ['Égalisation quasi-immédiate', 'Pas de compromis sur la structure de pions', 'Le bond ...Ce4 est tactiquement très fort'],
+      cons: ['Les Blancs peuvent forcer des positions plates et annulantes', 'Difficile de créer un jeu très asymétrique si les Blancs sont prudents'],
+      strategy: 'Développement rapide. Si 5. a3, prendre en c3 puis bondir immédiatement avec ...Ce4! pour attaquer le Fou et égaliser sans effort.',
+      keyMoves: ['O-O', 'Bxc3', 'Ne4'],
+      subVariations: [
+        {
+          id: "ni-v2-sv1",
+          name: 'Jeu passif blanc 5. e3?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bd2 O-O 5. e3 c5 6. a3 Bxc3 7. Bxc3 Ne4 8. Qc2 Nxc3 9. Qxc3 cxd4 10. exd4 d5',
+          explanation: "Éviter de poser la question au Fou avec a3 donne tout le temps aux Noirs de frapper avec c5. Le bond Ne4 viendra de toute façon détruire la paire de Fous blanche, offrant une égalité parfaite."
+        },
+        {
+          id: "ni-v2-sv2",
+          name: 'Placement douteux 7. Rc1?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Bd2 O-O 5. a3 Bxc3 6. Bxc3 Ne4 7. Rc1?! b6 8. e3 Bb7 9. Nf3 d6 10. Be2 Nd7',
+          explanation: "Mettre la Tour en c1 au lieu de la Dame (Qc2) laisse le Cavalier e4 noir totalement maître du centre. Les Noirs se développent magnifiquement en fianchetto et gardent un avantage d'activité net."
+        }
+      ]
+    },
+    {
+      id: "ni-v3",
+      name: 'Variante Rubinstein (4. e3)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 c5 6. Nf3 d5 7. O-O Nc6 8. a3 Bxc3 9. bxc3 dxc4 10. Bxc4 Qc7',
+      theory: 'La réponse la plus classique et solide des Blancs. Ils consolident d4 et se développent de manière flexible. La lutte est très riche positionnellement.',
+      pros: ['Lutte riche et stratégiquement complexe', 'Permet de détruire le centre blanc prématurément (...c5 et ...d5)', 'Le dynamisme des pièces noires est maximal'],
+      cons: ['Les Blancs gardent une grande flexibilité et la paire de Fous', 'Nécessite une bonne lecture des structures centrales pour ne pas se faire écraser'],
+      strategy: 'Roquer, puis frapper immédiatement le centre avec ...c5 et ...d5. L\'objectif est de disloquer la structure blanche et de créer un jeu de pièces actif avant que les Blancs ne profitent de leur paire de Fous.',
+      keyMoves: ['O-O', 'c5', 'd5'],
+      subVariations: [
+        {
+          id: "ni-v3-sv1",
+          name: 'Libération du centre 5. dxc5?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. dxc5?! Na6 6. a3 Bxc3+ 7. bxc3 Nxc5 8. Nf3 b6 9. Be2 Bb7 10. O-O Rc8',
+          explanation: "Prendre en c5 cède totalement le centre. Les Noirs récupèrent facilement le pion avec leur Cavalier (Na6-c5) qui devient une pièce monstrueuse dominant tout l'échiquier blanc."
+        },
+        {
+          id: "ni-v3-sv2",
+          name: 'Développement imprécis 6. Nge2?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 c5 6. Nge2?! cxd4 7. exd4 d5 8. c5 b6 9. cxb6 Qxb6 10. O-O Ba6',
+          explanation: "Dans cette structure avec Bd3, jouer Nge2 (au lieu de Nf3) est un peu lourd. Les Noirs liquident la tension centrale puis forcent l'échange du bon Fou blanc (Ba6), annulant toute perspective d'attaque blanche."
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'bogo-indian',
+  name: 'Défense Bogo-Indienne',
+  moves: '1. d4 Cf6 2. c4 e6 3. Cf3 Fb4+',
+  type: 'Solide, Positionnelle, Stratégique',
+  description: 'Le complément indispensable de la Nimzo-Indienne si les Blancs jouent 3. Cf3 pour éviter les pions doublés.',
+  pros: ['Perturbe le développement naturel des Blancs', 'Force souvent des échanges favorables ou un placement passif', 'Simple à jouer stratégiquement'],
+  cons: ['Moins tranchant que la Nimzo', 'Positions parfois un peu fermées'],
+  variations: [
+    {
+      id: "bi-v1",
+      name: 'Ligne Classique (4. Fd2)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7 5. g3 Nc6 6. Bg2 Bxd2+ 7. Nbxd2 d6 8. O-O e5 9. d5 Nb8 10. e4 a5',
+      theory: 'Les Blancs bloquent avec le Fou, allégeant la pression centrale. Les Noirs défendent souvent le Fou avec la Dame, puis visent à placer leurs pions sur les cases noires.',
+      pros: ['Dédouble facilement les problèmes de développement', 'Génère une structure inébranlable une fois les pions sur cases noires', 'Baisse le potentiel offensif blanc'],
+      cons: ['Peut devenir statique ou passif', 'Moins d\'opportunités tactiques rapides que dans d\'autres Indiennes'],
+      strategy: 'Si les Fous de cases noires s\'échangent, la priorité est de placer les pions sur cases noires (...d6, ...e5) pour limiter le Fou blanc de cases claires.',
+      keyMoves: ['Qe7', 'd6', 'e5'],
+      subVariations: [
+        {
+          id: "bi-v1-sv1",
+          name: 'Perte de temps 5. a3?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7 5. a3?! Bxd2+ 6. Qxd2 d6 7. Nc3 O-O 8. e4 e5 9. d5 a5 10. Be2 Na6',
+          explanation: "Pousser a3 pour forcer l'échange est une perte de temps sec, puisque les Noirs avaient de toute façon l'intention d'échanger en d2 un jour ou l'autre. Les Noirs gagnent un tempo de développement."
+        },
+        {
+          id: "bi-v1-sv2",
+          name: 'L\'échange direct 5. Bxb4?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 Qe7 5. Bxb4?! Qxb4+ 6. Qd2 Qxc4 7. e4 Qa4 8. Nc3 Qa5 9. Bd3 d6 10. O-O O-O',
+          explanation: "Échanger immédiatement en b4 met la Dame noire sur une case très active sur échec, ce qui permet souvent aux Noirs de gagner le pion c4 gratuitement, avec seulement une légère compensation pour les Blancs."
+        }
+      ]
+    },
+    {
+      id: "bi-v2",
+      name: 'Ligne Ambitieuse (4. Cbd2)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nbd2 O-O 5. a3 Be7 6. e4 d6 7. Bd3 c5 8. d5 exd5 9. exd5 Bg4 10. O-O Nbd7',
+      theory: 'Les Blancs refusent de marchander la paire de Fous et bloquent avec le Cavalier. Le défaut est que ce Cavalier bouche la vue de son propre Fou c1 et ralentit le développement.',
+      pros: ['Le Cavalier d2 bouche la position blanche', 'Permet une contestation facile avec ...c5', 'L\'initiative passe souvent rapidement aux Noirs'],
+      cons: ['Les Blancs gardent la paire de Fous', 'Les Blancs peuvent construire un gros centre si on les laisse faire'],
+      strategy: 'Roquer, laisser les Blancs pousser a3, puis replier le Fou en e7. Frapper ensuite le centre avec ...c5 et ...d6, profitant de la maladresse temporaire des pièces blanches.',
+      keyMoves: ['O-O', 'Be7', 'c5'],
+      subVariations: [
+        {
+          id: "bi-v2-sv1",
+          name: 'Surchauffe centrale 6. e5?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nbd2 O-O 5. a3 Be7 6. e5?! Ne8 7. Bd3 d6 8. Qc2 g6 9. O-O Nc6 10. Re1 Ng7',
+          explanation: "S'étendre trop vite avec e5 sans être totalement développé est puni stratégiquement. Le centre blanc devient une cible géante que les Noirs vont saper avec ...d6, ...f6 ou ...c5."
+        },
+        {
+          id: "bi-v2-sv2",
+          name: 'Jeu timide 5. e3?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Nbd2 O-O 5. e3 b6 6. Bd3 Bb7 7. O-O d5 8. a3 Bd6 9. b4 c5 10. dxc5 bxc5',
+          explanation: "Jouer e3 est trop passif face à la structure Bogo. Les Noirs se développent sans aucune contrainte avec un fianchetto (b6, Bb7) et égalisent totalement dès l'ouverture."
+        }
+      ]
+    },
+    {
+      id: "bi-v3",
+      name: 'Ligne Moderne (4. Fd2 a5)',
+      pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 a5 5. g3 d6 6. Bg2 Nbd7 7. O-O O-O 8. Nc3 e5 9. Qc2 exd4 10. Nxd4 Ne5',
+      theory: 'Une interprétation moderne où les Noirs défendent leur Fou avec le pion a5. Si les Blancs échangent, les Noirs reprennent avec le pion, ouvrant la colonne "a" pour leur Tour.',
+      pros: ['L\'ouverture de la colonne a est très puissante', 'Permet un jeu tendu et maintient le déséquilibre', 'Prépare idéalement la rupture ...e5'],
+      cons: ['Le pion a5 peut être une cible en finale si la Tour bouge', 'Demande une bonne gestion de l\'espace à l\'aile-Dame'],
+      strategy: 'Maintenir la tension. Si les Blancs ne prennent pas, se développer en structure Est-Indienne/Philidor inversée (d6, Nbd7, O-O) et préparer la poussée e5 pour prendre de l\'espace.',
+      keyMoves: ['a5', 'd6', 'e5'],
+      subVariations: [
+        {
+          id: "bi-v3-sv1",
+          name: 'L\'erreur positionnelle 5. Bxb4?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 a5 5. Bxb4?! axb4 6. Nbd2 d6 7. e4 e5 8. d5 Nfd7 9. Bd3 Nc5 10. Nb3 b6',
+          explanation: "C'est l'erreur que les Noirs espèrent ! L'échange donne la colonne a ouverte, un contrôle massif de la case c5 pour le Cavalier, et le pion b4 paralyse totalement l'aile-Dame blanche."
+        },
+        {
+          id: "bi-v3-sv2",
+          name: 'Solidité apparente 5. e3?!',
+          pgnEn: '1. d4 Nf6 2. c4 e6 3. Nf3 Bb4+ 4. Bd2 a5 5. e3 O-O 6. Bd3 d6 7. O-O e5 8. dxe5 dxe5 9. Bxb4 axb4 10. Nxe5 Qe7',
+          explanation: "Même motif que précédemment. En jouant e3, les Blancs permettent aux Noirs de percer avec e5. S'ils tentent de gagner un pion dans la séquence, l'activité de la Dame et de la Tour noires compense largement."
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'sicilian-taimanov',
+  name: 'Sicilienne Taimanov',
+  moves: '1. e4 c5 2. Cf3 e6 3. d4 cxd4 4. Cxd4 Cc6',
+  type: 'Agressive, Flexible, Asymétrique',
+  description: 'Une Sicilienne redoutable et flexible. La structure à base de e6 permet un développement compact tout en gardant l\'option d\'exploser le centre avec ...d5.',
+  pros: ['La rupture centrale ...d5 est toujours possible', 'Flexibilité du Cavalier roi (va souvent en e7 plutôt qu\'en f6)', 'Attaques puissantes sur l\'aile-Dame'],
+  cons: ['Demande de la patience face aux attaques f3/g4', 'Ordre de coups parfois subtil'],
+  variations: [
+    {
+      id: "st-v1",
+      name: 'Ligne Principale (5. Cc3 Dc7)',
+      pgnEn: '1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 Qc7 6. Be3 a6 7. Be2 b5 8. Nxc6 Qxc6 9. O-O Bb7 10. Bf3 Rc8',
+      theory: 'La position de base. La Dame en c7 est idéale (contrôle e5, libère d8 pour la Tour).',
+      pros: ['Flexibilité structurelle immense', 'Contre-attaque puissante et naturelle sur la colonne c', 'Sécurité du Roi noir bien meilleure que dans la Dragon'],
+      cons: ['L\'Attaque à l\'Anglaise peut être létale si l\'on est trop passif', 'Retarde un peu la sortie du Fou f8'],
+      strategy: 'Développer le Cavalier souvent en e7 (pas f6) pour garder de la flexibilité. Lancer une tempête sur l\'aile-Dame avec ...a6 et ...b5.',
+      keyMoves: ['Qc7', 'a6', 'b5'],
+      subVariations: [
+        {
+          id: "st-v1-sv1",
+          name: 'Agressivité vaine 6. Ndb5?!',
+          pgnEn: '1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 Qc7 6. Ndb5?! Qb8 7. Be3 a6 8. Nd4 Nf6 9. Bd3 Ne5 10. O-O b5',
+          explanation: "Sauter en b5 pour harceler la Dame semble bon, mais après le simple Qb8 suivi de a6, le Cavalier blanc doit reculer honteusement. Les Noirs ont gagné des temps précieux pour lancer leur attaque."
+        },
+        {
+          id: "st-v1-sv2",
+          name: 'Fianchetto inefficace 6. g3?!',
+          pgnEn: '1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 Qc7 6. g3?! a6 7. Bg2 Nf6 8. O-O d6 9. Re1 Be7 10. Nxc6 bxc6',
+          explanation: "Dans cette ligne, fianchetter le Fou est trop lent. Les Noirs se développent avec une structure parfaite de Scheveningen (a6, d6, Be7) et obtiennent un contrôle absolu du centre en reprenant en c6 avec le pion b."
+        }
+      ]
+    },
+    {
+      id: "st-v2",
+      name: 'Anti-Sicilienne : Alapine (2. c3)',
+      pgnEn: '1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 Nf6 5. Nf3 e6 6. Na3 Nc6 7. Nb5 Qd8 8. dxc5 Bxc5 9. Qxd8+ Kxd8 10. Bf4 Nd5',
+      theory: 'Contre l\'Alapine, les Noirs frappent immédiatement le centre. La Dame est bien centralisée car le Cavalier blanc ne peut pas venir en c3 pour la chasser.',
+      pros: ['Annule tout avantage d\'espace blanc', 'Les positions obtenues sont particulièrement saines', 'Dépourvu des immenses embûches théoriques ouvertes'],
+      cons: ['Mène très souvent à des finales statiques', 'Manque d\'opportunités tactiques rapides pour les Noirs'],
+      strategy: 'Prendre l\'initiative avec 2... d5. Se développer sainement (Cf6, Cc6, e6) et jouer au centre.',
+      keyMoves: ['d5', 'Qxd5', 'Nf6'],
+      subVariations: [
+        {
+          id: "st-v2-sv1",
+          name: 'Surchauffe 3. e5?!',
+          pgnEn: '1. e4 c5 2. c3 d5 3. e5?! Nc6 4. d4 cxd4 5. cxd4 Qb6 6. Nf3 Bg4 7. Be2 e6 8. O-O Bxf3 9. Bxf3 Qxd4 10. Qb3 Qb4',
+          explanation: "Pousser e5 façon Française est mauvais ici. Les Noirs mettent une pression insoutenable sur d4 (avec Nc6, Qb6, Bg4). Les Blancs finissent immanquablement par perdre leur pion central d4."
+        },
+        {
+          id: "st-v2-sv2",
+          name: 'Centre fragile 5. cxd4?!',
+          pgnEn: '1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 Nc6 5. Nf3 Bg4 6. Be2 cxd4 7. cxd4 e6 8. Nc3 Bb4 9. O-O Bxc3 10. bxc3 Nf6',
+          explanation: "Reprendre en d4 avec le pion permet aux Noirs d'isoler ce pion (après des échanges) et de mettre une pression très forte dessus, obtenant une finale légèrement favorable grâce à la meilleure structure."
+        }
+      ]
+    },
+    {
+      id: "st-v3",
+      name: 'Anti-Sicilienne : Fermée (2. Cc3)',
+      pgnEn: '1. e4 c5 2. Nc3 Nc6 3. g3 e6 4. Bg2 Nge7 5. d3 d5 6. exd5 Nxd5 7. Nxd5 exd5 8. Ne2 Be7 9. O-O O-O 10. d4 c4',
+      theory: 'Les Blancs refusent d\'ouvrir le centre pour préparer une lente attaque. Les Noirs utilisent leur structure (e6) pour exploser le centre avant que l\'attaque n\'arrive.',
+      pros: ['Schéma ultra-facile à jouer (...d5)', 'Explose littéralement les attaques de flanc blanches', 'Égalité garantie en peu de coups'],
+      cons: ['Les Blancs peuvent bloquer le centre s\'ils le décident', 'Exige tout de même une bonne vigilance prophylactique'],
+      strategy: 'Ignorer l\'attaque latérale, se développer avec Cc6, e6, Nge7 et pousser ...d5 au plus vite.',
+      keyMoves: ['e6', 'Nge7', 'd5'],
+      subVariations: [
+        {
+          id: "st-v3-sv1",
+          name: 'Grand Prix hybride 4. f4?!',
+          pgnEn: '1. e4 c5 2. Nc3 Nc6 3. g3 e6 4. f4?! d5 5. d3 dxe4 6. Nxe4 Nf6 7. Bg2 Be7 8. Ne2 O-O 9. O-O Qc7 10. c3 b6',
+          explanation: "Mélanger la Sicilienne Fermée avec f4 (Grand Prix) se heurte parfaitement à la poussée immédiate ...d5. Les Noirs liquident la tension centrale, se développent majestueusement et neutralisent toute attaque blanche."
+        },
+        {
+          id: "st-v3-sv2",
+          name: 'Refus de l\'échange 6. Nge2?!',
+          pgnEn: '1. e4 c5 2. Nc3 Nc6 3. g3 e6 4. Bg2 Nge7 5. d3 d5 6. Nge2?! d4 7. Nb1 e5 8. O-O Ng6 9. a4 Bd6 10. Na3 Be6',
+          explanation: "Refuser de prendre en d5 et continuer le développement permet aux Noirs de fermer définitivement le centre avec d4. Les pièces blanches sont refoulées sur leur première rangée, et les Noirs dominent stratégiquement."
+        }
+      ]
+    }
+  ]
+},
     {
       id: 'czech-pirc',
       name: 'Défense Tchèque (Pirc)',
