@@ -59,8 +59,8 @@
             return b;
           }, [fen, side]);
 
-          const ranks = side === 'white' ? [8, 7, 6, 5, 4, 3, 2, 1] : [1, 2, 3, 4, 5, 6, 7, 8];
-          const files = side === 'white' ? ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] : ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+          const ranks = side === 'black' ? [1, 2, 3, 4, 5, 6, 7, 8] : [8, 7, 6, 5, 4, 3, 2, 1];
+          const files = side === 'black' ? ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'] : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
           return (
             <div className="flex flex-col shrink-0">
@@ -108,7 +108,7 @@
             const [currentIndex, setCurrentIndex] = useState(0);
 
             const mainSteps = useMemo(() => {
-                if (typeof Chess === 'undefined') return [];
+                if (typeof Chess === 'undefined' || !variant.pgnEn) return [];
                 const ch = new Chess();
                 ch.load_pgn(variant.pgnEn);
                 const moves = ch.history();
@@ -237,14 +237,16 @@
                                     </div>
                                 )}
 
-                                <div className={`p-5 rounded-xl border transition-colors ${activeSubData ? 'bg-red-950/10 border-red-900/30' : 'bg-black/50 border-neutral-800/50'}`}>
-                                    <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
-                                        <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest flex items-center gap-2"><Icon name="mouse-pointer-click" size={14} /> Cliquez sur un coup (parenthèses = erreurs)</span>
+                                {variant.pgnEn && side !== 'pawns' && (
+                                    <div className={`p-5 rounded-xl border transition-colors ${activeSubData ? 'bg-red-950/10 border-red-900/30' : 'bg-black/50 border-neutral-800/50'}`}>
+                                        <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
+                                            <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest flex items-center gap-2"><Icon name="mouse-pointer-click" size={14} /> Cliquez sur un coup (parenthèses = erreurs)</span>
+                                        </div>
+                                        <div className="flex flex-wrap items-center leading-loose text-base sm:text-lg">
+                                            {renderInlinePgn()}
+                                        </div>
                                     </div>
-                                    <div className="flex flex-wrap items-center leading-loose text-base sm:text-lg">
-                                        {renderInlinePgn()}
-                                    </div>
-                                </div>
+                                )}
 
                                 {!activeSubData && variant.strategy && (
                                     <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-5 mt-2 animate-fade-in">
@@ -260,18 +262,24 @@
                                 )}
                             </div>
                             
-                            <div className="flex flex-col items-center shrink-0 w-full xl:w-auto mt-2 xl:mt-0 sticky top-24">
-                                <div className="flex items-center justify-between w-full mb-3 px-1">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Coup <span className={activeSubData ? 'text-red-500 font-extrabold' : 'text-amber-500 font-bold'}>{currentIndex}</span> / {currentSteps.length - 1}</span>
+                            {side !== 'pawns' ? (
+                                <div className="flex flex-col items-center shrink-0 w-full xl:w-auto mt-2 xl:mt-0 sticky top-24">
+                                    <div className="flex items-center justify-between w-full mb-3 px-1">
+                                        <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Coup <span className={activeSubData ? 'text-red-500 font-extrabold' : 'text-amber-500 font-bold'}>{currentIndex}</span> / {currentSteps.length - 1}</span>
+                                    </div>
+                                    {currentStep && <Chessboard fen={currentStep.fen} side={side} />}
+                                    <div className="flex gap-2 mt-4 w-full justify-center">
+                                        <button onClick={() => setCurrentIndex(0)} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevrons-left" size={20} /></button>
+                                        <button onClick={goPrev} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevron-left" size={20} /></button>
+                                        <button onClick={goNext} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevron-right" size={20} /></button>
+                                        <button onClick={() => setCurrentIndex(currentSteps.length - 1)} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevrons-right" size={20} /></button>
+                                    </div>
                                 </div>
-                                {currentStep && <Chessboard fen={currentStep.fen} side={side} />}
-                                <div className="flex gap-2 mt-4 w-full justify-center">
-                                    <button onClick={() => setCurrentIndex(0)} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevrons-left" size={20} /></button>
-                                    <button onClick={goPrev} disabled={currentIndex === 0} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevron-left" size={20} /></button>
-                                    <button onClick={goNext} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevron-right" size={20} /></button>
-                                    <button onClick={() => setCurrentIndex(currentSteps.length - 1)} disabled={currentIndex === currentSteps.length - 1} className="p-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors flex items-center justify-center flex-1"><Icon name="chevrons-right" size={20} /></button>
+                            ) : variant.fen && (
+                                <div className="flex flex-col items-center shrink-0 w-full xl:w-auto mt-2 xl:mt-0 sticky top-24">
+                                    <Chessboard fen={variant.fen} side="white" />
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -368,7 +376,7 @@
                             )}
                         </div>
                         <div className="w-full lg:w-96 shrink-0 flex justify-center">
-                            <Chessboard fen={exercise.fen} side={exercise.side} />
+                            <Chessboard fen={stepData.fen || exercise.fen} side={exercise.side} />
                         </div>
                     </div>
                 </div>
@@ -538,9 +546,10 @@
                             </div>
                             
                             <div className={`flex bg-neutral-800 p-1 rounded-full border border-neutral-700 transition-opacity ${currentView === 'builder' ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>
-                                <button onClick={() => setSide('white')} className={`px-4 sm:px-6 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'white' ? 'bg-white text-black' : 'text-neutral-400'}`}>Blancs</button>
-                                <button onClick={() => setSide('black')} className={`px-4 sm:px-6 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'black' ? 'bg-neutral-700 text-white' : 'text-neutral-400'}`}>Noirs</button>
-                            </div>
+								<button onClick={() => setSide('white')} className={`px-3 sm:px-5 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'white' ? 'bg-white text-black' : 'text-neutral-400'}`}>Blancs</button>
+								<button onClick={() => setSide('black')} className={`px-3 sm:px-5 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'black' ? 'bg-neutral-700 text-white' : 'text-neutral-400'}`}>Noirs</button>
+								<button onClick={() => setSide('pawns')} className={`px-3 sm:px-5 py-1.5 rounded-full text-sm font-medium transition-all ${side === 'pawns' ? 'bg-emerald-600 text-white' : 'text-neutral-400'}`}>Pions</button>
+							</div>
                         </div>
                     </header>
 
@@ -566,8 +575,8 @@
                                 </div>
 
                                 <div className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-3 px-2 border-b border-neutral-800 pb-2">
-                                    Théorie : Les {side === 'white' ? 'Blancs' : 'Noirs'}
-                                </div>
+									Théorie : {side === 'white' ? 'Les Blancs' : side === 'black' ? 'Les Noirs' : 'Les Pions'}
+								</div>
 
                                 <div className="space-y-1 overflow-y-auto pb-20">
                                     {window.OPENINGS_DATA && window.OPENINGS_DATA[side] && window.OPENINGS_DATA[side].map((opening) => (
@@ -601,8 +610,10 @@
                                                 <div>
                                                     <div className="flex flex-wrap items-center gap-3 mb-3">
                                                         <div className="flex items-center gap-2 text-amber-500">
-                                                            <Icon name={side === 'white' ? 'sword' : 'shield'} size={20} />
-                                                            <span className="text-sm font-semibold uppercase tracking-widest">{side === 'white' ? 'Répertoire Blanc' : 'Répertoire Noir'}</span>
+                                                            <Icon name={side === 'white' ? 'sword' : side === 'black' ? 'shield' : 'grid'} size={20} />
+                                                            <span className="text-sm font-semibold uppercase tracking-widest">
+                                                                {side === 'white' ? 'Répertoire Blanc' : side === 'black' ? 'Répertoire Noir' : 'Structures Stratégiques'}
+                                                            </span>
                                                         </div>
                                                         <span className="px-3 py-1 bg-indigo-900/40 text-indigo-400 border border-indigo-700/50 rounded-full text-xs font-bold tracking-wide">
                                                             {selectedOpening.type}
@@ -614,9 +625,39 @@
                                                     {selectedOpening.moves}
                                                 </div>
                                             </div>
-                                            <p className="text-xl text-neutral-300 border-l-4 border-amber-600 pl-6 py-2 mb-8 font-medium">
-                                                {selectedOpening.description}
-                                            </p>
+                                            
+                                            <div className="flex flex-col lg:flex-row gap-8 items-start mb-8">
+                                                <div className="flex-1 w-full">
+                                                    <p className="text-xl text-neutral-300 border-l-4 border-amber-600 pl-6 py-2 mb-6 font-medium">
+                                                        {selectedOpening.description}
+                                                    </p>
+                                                    
+                                                    {/* AFFICHAGE DES PROS & CONS GLOBAUX */}
+                                                    {selectedOpening.pros && selectedOpening.cons && (
+                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                            <div className="bg-emerald-950/20 border border-emerald-900/30 rounded-xl p-4">
+                                                                <h5 className="text-sm font-bold text-emerald-500 uppercase tracking-widest mb-3 flex items-center gap-2"><Icon name="check-circle-2" size={16} /> Avantages</h5>
+                                                                <ul className="space-y-2 text-sm text-neutral-300">
+                                                                    {selectedOpening.pros.map((pro, i) => <li key={`main-pro-${i}`} className="flex gap-2"><span className="text-emerald-500 mt-0.5">•</span> {pro}</li>)}
+                                                                </ul>
+                                                            </div>
+                                                            <div className="bg-red-950/20 border border-red-900/30 rounded-xl p-4">
+                                                                <h5 className="text-sm font-bold text-red-500 uppercase tracking-widest mb-3 flex items-center gap-2"><Icon name="x-circle" size={16} /> Inconvénients</h5>
+                                                                <ul className="space-y-2 text-sm text-neutral-300">
+                                                                    {selectedOpening.cons.map((con, i) => <li key={`main-con-${i}`} className="flex gap-2"><span className="text-red-500 mt-0.5">•</span> {con}</li>)}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                
+                                                {/* Échiquier fixe pour l'onglet Pions */}
+                                                {side === 'pawns' && selectedOpening.fen && (
+                                                    <div className="shrink-0 w-full lg:w-auto flex justify-center">
+                                                        <Chessboard fen={selectedOpening.fen} side="white" />
+                                                    </div>
+                                                )}
+                                            </div>
                                         </section>
 
                                         <div className="flex gap-4 border-b border-neutral-800 mb-8 pb-px">

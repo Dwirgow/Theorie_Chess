@@ -412,7 +412,7 @@ window.OPENINGS_DATA = {
         {
           id: 'qgr-ex-1',
           title: 'Maîtriser la structure Carlsbad et le PDI',
-          fen: 'r1bqr1k1/pp1n1ppp/2p2n2/3p2B1/2PP4/2NBP3/P1Q1NPPP/R4RK1 w - - 0 11',
+          fen: 'r1bqr1k1/pp1n1ppp/2p2n2/3p2B1/2PP4/2NBP3/P1Q1NPPP/R4RK1 w - - 0 11', // FEN par défaut (Carlsbad de base)
           side: 'white',
           steps: [
             {
@@ -425,6 +425,7 @@ window.OPENINGS_DATA = {
               ]
             },
             {
+              fen: 'r1bqr1k1/pp1n1ppp/2p2n2/1P1p2B1/3P4/2NBP3/P1Q2PPP/R4RK1 b - - 0 12', // FEN de l'attaque de minorité (b5 joué)
               question: "Q2. Dans la structure Carlsbad, quel est l'objectif de la fameuse 'attaque de minorité' ?",
               options: [
                 { text: "Avancer les pions a et b (b4-b5) pour forcer un échange en c6 et créer un pion noir faible et arriéré sur une colonne ouverte.", isCorrect: true, feedback: "Exactement. Vous utilisez vos 2 pions (minorité) contre leurs 3 pions (majorité) pour abîmer leur structure, puis vous attaquez le pion c6 malade." },
@@ -434,6 +435,7 @@ window.OPENINGS_DATA = {
               ]
             },
             {
+              fen: 'r1bqr1k1/pp1n1ppp/2p2n2/3p2B1/3PP3/2NB1P2/P1Q1N1PP/R4RK1 b - - 0 12', // FEN de l'attaque centrale (f3 et e4 joués)
               question: "Q3. Si vous choisissez plutôt l'attaque centrale (le plan Botvinnik) dans la Carlsbad, quelle est la manœuvre clé ?",
               options: [
                 { text: "Placer le Cavalier en e2, puis pousser f3 suivi de la rupture agressive e4.", isCorrect: true, feedback: "Parfait. Ce plan rouleau compresseur écrase le centre noir et mène souvent à de violentes attaques de mat." },
@@ -443,6 +445,7 @@ window.OPENINGS_DATA = {
               ]
             },
             {
+              fen: 'r1bq1rk1/pp2bppp/2n2n2/8/2Bp4/P1N1PN2/1P3PPP/R1BQR1K1 w - - 0 11', // FEN avec le Pion Dame Isolé (d4)
               question: "Q4. Dans le Gambit Dame (Accepté ou refusé avec c5), si vous vous retrouvez avec un Pion Dame Isolé (PDI) en d4, quel est votre atout principal ?",
               options: [
                 { text: "Une forteresse impénétrable en finale.", isCorrect: false, feedback: "Le PDI est justement une faiblesse en finale !" },
@@ -452,6 +455,7 @@ window.OPENINGS_DATA = {
               ]
             },
             {
+              fen: 'r1bq1rk1/pp2bppp/2n2n2/4N3/2Bp4/P1N1P3/1P3PPP/R1BQR1K1 b - - 1 11', // FEN PDI avec Cavalier avancé en e5
               question: "Q5. Quelle est la règle d'or stratégique lorsque vous jouez AVEC le Pion Dame Isolé ?",
               options: [
                 { text: "Éviter à tout prix l'échange des pièces mineures, car cela dissipe votre potentiel d'attaque et expose votre pion faible.", isCorrect: true, feedback: "C'est vital. Sans pièces mineures, l'attaque sur le Roi s'évapore, et votre pion d4 devient une simple cible pour la finale." },
@@ -2140,8 +2144,135 @@ window.OPENINGS_DATA = {
         }
       ]
     }, 
+  ],
+  pawns: [
+    {
+      id: 'isolated-pawn',
+      name: 'Le Pion Isolé (IQP)',
+      moves: 'd4 ou d5 isolé',
+      type: 'Dynamique, Attaque, Universelle',
+	  fen: '4k3/pp3ppp/4p3/8/3P4/8/PP3PPP/4K3 w - - 0 1',
+      description: 'Un pion central (généralement d4 pour les Blancs ou d5 pour les Noirs) qui n\'a plus de pions de sa propre couleur sur les colonnes adjacentes pour le protéger. Il apparaît dans des dizaines d\'ouvertures (Gambit Dame, Caro-Kann, Française...).',
+      pros: ['Avantage d\'espace au centre très marqué', 'Contrôle absolu des cases clés (e5 et c5 pour un pion d4)', 'Lignes et diagonales ouvertes pour les Tours et les Fous'],
+      cons: ['Faiblesse structurelle chronique (ne peut être défendu que par des pièces)', 'Devient un fardeau très lourd en finale', 'La case juste devant le pion est un avant-poste parfait pour l\'adversaire'],
+      variations: [
+        {
+          id: "iqp-with",
+          name: 'Jouer AVEC le Pion Isolé',
+		  fen: 'r2q1rk1/p3bppp/1pb1pn2/4N1B1/3P4/P1N5/1P3PPP/R2QR1K1 w - - 0 1',
+          theory: 'Le contrat est simple : tu acceptes une faiblesse structurelle à long terme en échange d\'une activité de pièces maximale et immédiate en milieu de jeu.',
+          strategy: 'L\'attaque prime. Ne JAMAIS échanger de pièces mineures sans raison (chaque échange rapproche de la finale et affaiblit ton attaque). Installe un Cavalier sur l\'avant-poste central (e5). Crée des batteries pointées vers le Roi adverse. Garde toujours la menace de la rupture centrale d4-d5 pour faire exploser la position.',
+          keyMoves: ['Ce5', 'Te1', 'd4-d5'],
+          subVariations: []
+        },
+        {
+          id: "iqp-against",
+          name: 'Jouer CONTRE le Pion Isolé',
+		  fen: 'r1bq1rk1/pp2bppp/2n2n2/3p4/3N4/2N3P1/PP2PPBP/R1BQ1RK1 w - - 0 1',
+          theory: 'L\'objectif est de survivre à l\'orage tactique du milieu de jeu pour faire valoir le défaut structurel de l\'adversaire en finale.',
+          strategy: 'Le blocus ! Place une pièce solide (le Cavalier est le bloqueur parfait) sur la case située juste devant le pion isolé (d5) pour l\'empêcher d\'avancer et d\'exploser. Force systématiquement l\'échange des pièces mineures pour dissiper le potentiel d\'attaque de l\'adversaire.',
+          keyMoves: ['Cd5', 'Fxf6', 'Te8'],
+          subVariations: []
+        }
+      ],
+      exercises: []
+    },
+    {
+      id: 'carlsbad-structure',
+      name: 'La Structure Carlsbad',
+      moves: 'cxd5 exd5',
+      type: 'Positionnelle, Manœuvres, Asymétrique',
+	  fen: '4k3/pp3ppp/2p5/3p4/3P4/4P3/PP3PPP/4K3 w - - 0 1',
+      description: 'L\'une des structures les plus célèbres des échecs, issue du Gambit Dame Refusé (Variante d\'Échange) ou de la Caro-Kann (couleurs inversées). Elle définit le plan de jeu pour toute la partie.',
+      pros: ['Clarté absolue des plans de jeu', 'Structure de pions inébranlable', 'Sécurité naturelle du Roi'],
+      cons: ['Jeu de manœuvres très lent nécessitant beaucoup de patience', 'L\'adversaire sait exactement de quel côté l\'attaque va arriver'],
+      variations: [
+        {
+          id: "carlsbad-minority",
+          name: 'Jouer la Minorité (Blancs)',
+		  fen: 'r1b1r1k1/1p2qppp/2p3n1/1P1p4/3Pn3/2NBPN2/2Q2PPP/1R3RK1 w - - 0 1',
+          theory: 'Tu as une minorité de pions à l\'aile-Dame (a2, b2) contre une majorité noire (a7, b7, c6). Le but est paradoxalement d\'attaquer leur majorité pour la disloquer.',
+          strategy: 'Place tes Tours sur les colonnes a et b. Pousse b4 puis b5. Le but est d\'échanger le pion b5 contre le pion c6 (bxc6). Cela laissera les Noirs avec un pion c6 isolé et arriéré sur une colonne ouverte, que tu vas assiéger.',
+          keyMoves: ['b4', 'b5', 'bxc6'],
+          subVariations: []
+        },
+        {
+          id: "carlsbad-black",
+          name: 'La Contre-Attaque (Noirs)',
+		  fen: 'r1b3k1/1p5p/2p4r/1P1p1p2/3Pn1pq/2NBP3/2Q2PPP/1R3RK1 w - - 0 1',
+          theory: 'Puisque les Blancs attaquent massivement sur l\'aile-Dame, ton avantage spatial naturel se trouve au centre et à l\'aile-Roi.',
+          strategy: 'Laisse les Blancs manœuvrer à l\'aile-Dame, et monte une attaque sur leur Roi. Place un Cavalier en e4. Manœuvre la Dame vers f6 ou g5, et pousse tes pions f et g pour créer un orage sur le roque blanc.',
+          keyMoves: ['Ce4', 'Df6', 'f5'],
+          subVariations: []
+        }
+      ],
+      exercises: []
+    },
+    {
+      id: 'hanging-pawns',
+      name: 'Les Pions Pendants',
+      moves: 'c4 et d4 isolés ensemble',
+      type: 'Tension, Dynamique, Espace',
+      fen: '4k3/pp3ppp/4p3/8/2PP4/8/P4PPP/4K3 w - - 0 1',
+      description: 'Deux pions centraux côte à côte (souvent c4/d4 pour les Blancs) sans aucun autre pion de leur couleur sur les colonnes adjacentes.',
+      pros: ['Contrôle massif de l\'espace central et de nombreuses cases', 'Puissance d\'attaque écrasante si l\'un des deux pions parvient à percer', 'Lignes très ouvertes pour les Fous'],
+      cons: ['Exigent d\'être constamment défendus par les propres pièces', 'S\'ils sont définitivement bloqués, ils deviennent de lourdes cibles statiques'],
+      variations: [
+        {
+          id: "hanging-with",
+          name: 'Jouer AVEC les Pions Pendants',
+		  fen: '2r2rk1/pb1qbppp/1pn1pn2/8/2PP4/2NB1N2/PB2QPPP/2RR2K1 w - - 0 1',
+          theory: 'Leur force réside dans leur mobilité et l\'espace qu\'ils dégagent derrière eux pour manœuvrer tes pièces.',
+          strategy: 'Ne les pousse pas sans raison, car une poussée fige la structure et crée un trou. Utilise l\'espace qu\'ils t\'offrent pour attaquer le Roi adverse. Attends le moment tactique parfait pour pousser c4-c5 ou d4-d5 afin de disloquer la défense ennemie.',
+          keyMoves: ['d4-d5', 'c4-c5', 'Ce5'],
+          subVariations: []
+        },
+        {
+          id: "hanging-against",
+          name: 'Jouer CONTRE les Pions Pendants',
+		  fen : '2rr2k1/p2qbppp/1p2p3/n2n4/2PP4/P1N1BN2/4QPPP/R2R2K1 w - - 0 1',
+          theory: 'Le but est de forcer ces pions à perdre leur mobilité, pour ensuite les récolter un par un comme des fruits mûrs.',
+          strategy: 'Place tes pièces devant les pions pour les bloquer. L\'astuce ultime : force l\'un des deux pions à avancer (par exemple, attaque d4 pour forcer la poussée d5). Dès qu\'un pion avance, il crée un "trou" permanent et incontrôlable sur la case adjacente (c5). Place ton Cavalier dans ce trou et paralyse la position.',
+          keyMoves: ['Cc5', 'Cd5', 'Fd6'],
+          subVariations: []
+        }
+      ],
+      exercises: []
+    },
+    {
+      id: 'maroczy-bind',
+      name: 'L\'Étau de Maroczy',
+      moves: 'Pions c4 et e4 (vs d6)',
+      type: 'Étouffement, Restrictive, Positionnelle',
+      fen: '4k3/pp2pppp/3p4/8/2P1P3/8/PP3PPP/4K3 w - - 0 1',
+      description: 'Une formation terrifiante pour les joueurs tactiques. Les Blancs placent leurs pions en c4 et e4 pour verrouiller totalement la case d5.',
+      pros: ['Étouffement quasi-total des contre-attaques adverses', 'Contrôle absolu de la case de rupture centrale (d5)', 'Très faible risque de perdre la partie'],
+      cons: ['Parties très fermées, demandant beaucoup de patience et de manœuvres', 'Si l\'adversaire réussit tout de même à percer, l\'étau s\'effondre'],
+      variations: [
+        {
+          id: "maroczy-with",
+          name: 'Serrer l\'Étau',
+          fen: '2r1r1k1/1p1q1pbp/p2p1np1/2pN4/2P1P3/4BP2/PP1Q2PP/2RR2K1 w - - 0 1',
+          theory: 'La patience est ton arme. Tu as pris tout l\'espace central, ton adversaire va lentement suffoquer s\'il ne trouve pas de levier.',
+          strategy: 'Ne te précipite jamais. Empêche systématiquement toutes les poussées libératrices des Noirs (surtout ...b5 et ...d5). Masse tes pièces derrière tes pions c4 et e4. Une fois l\'adversaire paralysé, déclenche lentement une attaque sur l\'aile-Roi ou l\'aile-Dame.',
+          keyMoves: ['f3', 'Fe3', 'Cc3'],
+          subVariations: []
+        },
+        {
+          id: "maroczy-against",
+          name: 'Survivre à l\'Étau',
+          fen: '2r3k1/1p2ppbp/p2p1np1/q7/2P1P3/P1P1BP2/3Q2PP/R4RK1 b - - 0 1',
+          theory: 'L\'erreur mortelle contre le Maroczy est de rester passif. Tu as moins d\'espace, tu dois donc échanger des pièces et préparer une rupture.',
+          strategy: 'Le camp qui manque d\'espace doit échanger des pièces : force l\'échange des Cavaliers ou des Fous pour faire respirer ta position. Prépare méticuleusement des ruptures sur les flancs, comme ...b5 (souvent soutenu par a6 et Tb8) ou ...f5, pour faire exploser le verrouillage blanc.',
+          keyMoves: ['b5', 'f5', 'Cxd4'],
+          subVariations: []
+        }
+      ],
+      exercises: []
+    }
   ]
 };
+
 window.REPERTOIRE_BUILDER = {
   quiz: [
     {
