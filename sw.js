@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chesstheory-v2';
+const CACHE_NAME = 'chesstheory-v3';
 
 // Les fichiers locaux indispensables pour que l'app fonctionne hors-ligne
 const ASSETS_TO_CACHE = [
